@@ -10,40 +10,36 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BookingDialog } from './components/BookingDialog';
 import { SEO } from './components/SEO';
 
+import heroActionImage from '../pexels-criticalimagery-32896996.jpg';
+import communityVibesImage from '../pexels-khezez-34079544.jpg';
+import nightMatchImage from '../pexels-lluis-aragones-968548-4536850.jpg';
+import oceanSunsetImage from '../pexels-roger-aribau-gisbert-19420784-8485104.jpg';
+
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const heroImage = 'https://images.unsplash.com/photo-1699117686612-ece525e4f91a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHRlbm5pcyUyMGNvdXJ0fGVufDF8fHx8MTc2MjIyNzgyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
-  
-  const aboutImages = [
-    'https://images.unsplash.com/photo-1699117686612-ece525e4f91a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHRlbm5pcyUyMGNvdXJ0fGVufDF8fHx8MTc2MjIyNzgyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1626704485431-a0dea46bbe6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMHN1bnNldCUyMHphbnppYmFyfGVufDF8fHx8MTc2MjI3MjIzMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1673964566152-2aee6bc89929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGx1eHVyeSUyMGJlYWNofGVufDF8fHx8MTc2MjI3MjIzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  ];
+  const heroImage = heroActionImage;
 
-  const courtImage = 'https://images.unsplash.com/photo-1642506538803-294fc3d9fc26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHBsYXllcnMlMjBhY3Rpb258ZW58MXx8fHwxNzYyMjcyMjMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+  const aboutImages = [heroActionImage, communityVibesImage, oceanSunsetImage];
 
-  const eventImages = [
-    'https://images.unsplash.com/photo-1748698534492-746f3950d9ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb21tdW5pdHklMjBjZWxlYnJhdGlvbnxlbnwxfHx8fDE3NjIyNzIyMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1699117686612-ece525e4f91a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHRlbm5pcyUyMGNvdXJ0fGVufDF8fHx8MTc2MjIyNzgyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1642506538803-294fc3d9fc26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHBsYXllcnMlMjBhY3Rpb258ZW58MXx8fHwxNzYyMjcyMjMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1673964566152-2aee6bc89929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGx1eHVyeSUyMGJlYWNofGVufDF8fHx8MTc2MjI3MjIzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  ];
+  const courtImage = nightMatchImage;
+
+  const eventImages = [heroActionImage, communityVibesImage, nightMatchImage, oceanSunsetImage];
 
   const galleryImages = [
-    'https://images.unsplash.com/photo-1699117686612-ece525e4f91a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHRlbm5pcyUyMGNvdXJ0fGVufDF8fHx8MTc2MjIyNzgyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1626704485431-a0dea46bbe6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMHN1bnNldCUyMHphbnppYmFyfGVufDF8fHx8MTc2MjI3MjIzMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1673964566152-2aee6bc89929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGx1eHVyeSUyMGJlYWNofGVufDF8fHx8MTc2MjI3MjIzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1642506538803-294fc3d9fc26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWRlbCUyMHBsYXllcnMlMjBhY3Rpb258ZW58MXx8fHwxNzYyMjcyMjMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1748698534492-746f3950d9ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb21tdW5pdHklMjBjZWxlYnJhdGlvbnxlbnwxfHx8fDE3NjIyNzIyMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1700674233924-64812b05a10c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZXJpYWwlMjBvY2VhbiUyMHZpZXd8ZW58MXx8fHwxNzYyMjcyMjMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    heroActionImage,
+    communityVibesImage,
+    nightMatchImage,
+    oceanSunsetImage,
+    communityVibesImage,
+    nightMatchImage,
   ];
 
-  const contactBg = 'https://images.unsplash.com/photo-1700674233924-64812b05a10c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZXJpYWwlMjBvY2VhbiUyMHZpZXd8ZW58MXx8fHwxNzYyMjcyMjMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+  const contactBg = oceanSunsetImage;
 
   return (
     <>
-      <SEO />
+      <SEO ogImage={heroActionImage} />
       <div className="relative bg-[#002B5B] overflow-x-hidden">
         <Navigation onBookingClick={() => setIsBookingOpen(true)} />
         <Hero videoUrl={heroImage} onBookingClick={() => setIsBookingOpen(true)} />
