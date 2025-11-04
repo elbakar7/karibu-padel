@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import defaultOgImage from '../../pexels-criticalimagery-32896996.jpg';
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -11,10 +13,14 @@ export function SEO({
   title = 'Karibu Padel - No.1 Padel Court & Club in Zanzibar | Africa House Garden',
   description = 'Experience world-class padel at Karibu Padel, Zanzibar\'s premier padel club. Located in Africa House Garden with stunning ocean views. Book your court now for lessons, tournaments, and social events.',
   keywords = 'padel zanzibar, padel court zanzibar, tennis zanzibar, africa house garden, karibu padel, padel club tanzania, sports zanzibar, ocean view padel, padel lessons, padel tournaments, beach sports zanzibar',
-  ogImage = 'https://images.unsplash.com/photo-1699117686612-ece525e4f91a?w=1200',
+  ogImage = defaultOgImage,
 }: SEOProps) {
   useEffect(() => {
     document.title = title;
+
+    const resolvedOgImage = ogImage.startsWith('http')
+      ? ogImage
+      : new URL(ogImage, window.location.origin).href;
 
     const metaTags = [
       { name: 'description', content: description },
@@ -24,7 +30,7 @@ export function SEO({
       
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { property: 'og:image', content: ogImage },
+      { property: 'og:image', content: resolvedOgImage },
       { property: 'og:url', content: window.location.href },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'Karibu Padel' },
@@ -33,7 +39,7 @@ export function SEO({
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: ogImage },
+      { name: 'twitter:image', content: resolvedOgImage },
       
       { name: 'robots', content: 'index, follow' },
       { name: 'googlebot', content: 'index, follow' },
@@ -58,37 +64,37 @@ export function SEO({
       meta.setAttribute('content', content);
     });
 
-    const structuredData = {
-      '@context': 'https://schema.org',
-      '@type': 'SportsActivityLocation',
-      name: 'Karibu Padel',
-      description: description,
-      url: window.location.href,
-      telephone: '+255760777333',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Africa House Garden',
-        addressLocality: 'Shangani',
-        addressRegion: 'Zanzibar',
-        addressCountry: 'TZ',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: -6.163,
-        longitude: 39.185,
-      },
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '07:00',
-        closes: '22:00',
-      },
-      sameAs: [
-        'https://www.instagram.com/karibupadelclub',
-      ],
-      image: ogImage,
-      priceRange: '$$',
-    };
+      const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'SportsActivityLocation',
+        name: 'Karibu Padel',
+        description: description,
+        url: window.location.href,
+        telephone: '+255760777333',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Africa House Garden',
+          addressLocality: 'Shangani',
+          addressRegion: 'Zanzibar',
+          addressCountry: 'TZ',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: -6.163,
+          longitude: 39.185,
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '07:00',
+          closes: '22:00',
+        },
+        sameAs: [
+          'https://www.instagram.com/karibupadelclub',
+        ],
+        image: resolvedOgImage,
+        priceRange: '$$',
+      };
 
     let scriptTag = document.querySelector('script[type="application/ld+json"]');
     if (!scriptTag) {
