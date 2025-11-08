@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { MapPin, Phone, Instagram, MessageCircle } from 'lucide-react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 interface ContactProps {
   backgroundImage: PictureAsset;
@@ -11,6 +12,7 @@ interface ContactProps {
 export function Contact({ backgroundImage }: ContactProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const contactInfo = [
     {
@@ -37,7 +39,12 @@ export function Contact({ backgroundImage }: ContactProps) {
   ];
 
   return (
-    <section id="contact" ref={ref} className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center">
+    <section
+      id="contact"
+      ref={ref}
+      className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center"
+      aria-labelledby="contact-heading"
+    >
       <div className="absolute inset-0 z-0">
         <ResponsivePicture
           image={backgroundImage}
@@ -55,20 +62,28 @@ export function Contact({ backgroundImage }: ContactProps) {
 
       <motion.div
         className="absolute top-20 right-20 w-96 h-96 bg-[#00BFA6]/20 rounded-full blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 50, 0],
-          y: [0, -50, 0],
-        }}
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                scale: [1, 1.3, 1],
+                x: [0, 50, 0],
+                y: [0, -50, 0],
+              }
+        }
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute bottom-20 left-20 w-96 h-96 bg-[#FFD479]/20 rounded-full blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.4, 1],
-          x: [0, -30, 0],
-          y: [0, 40, 0],
-        }}
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                scale: [1, 1.4, 1],
+                x: [0, -30, 0],
+                y: [0, 40, 0],
+              }
+        }
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
 
@@ -92,6 +107,7 @@ export function Contact({ backgroundImage }: ContactProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-3xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6"
+            id="contact-heading"
           >
             <span className="bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent">
               Book Your Session
@@ -113,8 +129,8 @@ export function Contact({ backgroundImage }: ContactProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-gradient-to-r from-[#00BFA6] to-[#FFD479] rounded-full text-[#002B5B] shadow-lg hover:shadow-[0_0_40px_rgba(0,191,166,0.5)] transition-shadow"
           >
             <MessageCircle size={24} />
@@ -132,13 +148,13 @@ export function Contact({ backgroundImage }: ContactProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              whileHover={prefersReducedMotion ? undefined : { y: -10, scale: 1.02 }}
               className="relative group"
             >
               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-white/30 transition-all duration-300 h-full">
                 <motion.div
                   className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-[#00BFA6] to-[#FFD479] flex items-center justify-center mb-4 md:mb-6"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  whileHover={prefersReducedMotion ? undefined : { rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.4 }}
                 >
                   <item.icon className="text-white" size={24} />
@@ -173,7 +189,9 @@ export function Contact({ backgroundImage }: ContactProps) {
               className="mb-6 md:mb-8"
             >
               <div className="inline-flex items-center gap-3 px-6 md:px-8 py-3 bg-gradient-to-r from-[#00BFA6]/20 to-[#FFD479]/20 border border-white/10 rounded-full">
-                <span className="text-2xl md:text-3xl">🏝️</span>
+                <span className="text-2xl md:text-3xl" role="img" aria-label="Tropical island">
+                  🏝️
+                </span>
                 <span className="text-white text-sm md:text-base">Zanzibar's Premier Padel Destination</span>
               </div>
             </motion.div>
@@ -199,7 +217,7 @@ export function Contact({ backgroundImage }: ContactProps) {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: 0.9 + index * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.1, y: -3 }}
                   className="px-4 md:px-6 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-xs md:text-sm"
                 >
                   {feature}
@@ -226,7 +244,7 @@ export function Contact({ backgroundImage }: ContactProps) {
                 href="https://www.instagram.com/karibupadelclub"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2 }}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
                 className="text-white/50 hover:text-[#00BFA6] transition-colors"
               >
                 <Instagram size={20} />
@@ -235,7 +253,7 @@ export function Contact({ backgroundImage }: ContactProps) {
                 href="https://wa.me/255760777333"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2 }}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
                 className="text-white/50 hover:text-[#FFD479] transition-colors"
               >
                 <MessageCircle size={20} />
