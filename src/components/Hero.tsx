@@ -2,11 +2,11 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
 interface HeroProps {
-  videoUrl: string;
+  backgroundImage: string;
   onBookingClick: () => void;
 }
 
-export function Hero({ videoUrl, onBookingClick }: HeroProps) {
+export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const scale = useTransform(scrollY, [0, 500], [1, 1.2]);
@@ -17,10 +17,10 @@ export function Hero({ videoUrl, onBookingClick }: HeroProps) {
         style={{ opacity, scale, willChange: 'transform, opacity' }}
         className="absolute inset-0"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#002B5B]/60 via-transparent to-[#002B5B]/80 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
         <img
-          src={videoUrl}
-          alt="Karibu Padel Court"
+          src={backgroundImage}
+          alt="Aerial view of the Karibu Padel courts in Zanzibar"
           className="w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
