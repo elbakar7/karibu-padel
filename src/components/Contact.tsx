@@ -228,40 +228,49 @@ export function Contact({ backgroundImage }: ContactProps) {
         </motion.div>
       </div>
 
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 py-6 md:py-8 border-t border-white/10 bg-[#002B5B]/50 backdrop-blur-sm z-10"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.4, delay: 1 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/50 text-xs md:text-sm text-center md:text-left">
-              © 2025 Karibu Padel. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              <motion.a
-                href="https://www.instagram.com/karibupadelclub"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
-                className="text-white/50 hover:text-[#00BFA6] transition-colors"
-              >
-                <Instagram size={20} />
-              </motion.a>
-              <motion.a
-                href="https://wa.me/255760777333"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
-                className="text-white/50 hover:text-[#FFD479] transition-colors"
-              >
-                <MessageCircle size={20} />
-              </motion.a>
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 py-6 md:py-8 border-t border-white/10 bg-[#002B5B]/50 backdrop-blur-sm z-10"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.4, delay: 1 }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-2 text-center md:text-left">
+                <p className="text-white/50 text-xs md:text-sm">© 2025 Karibu Padel. All rights reserved.</p>
+                <motion.a
+                  href="https://islandtechsolution.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+                  className="text-blue-400 hover:text-blue-300 transition-colors text-xs md:text-sm"
+                >
+                  Designed by Island Tech Solution
+                </motion.a>
+              </div>
+              <div className="flex items-center gap-6">
+                <motion.a
+                  href="https://www.instagram.com/karibupadelclub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
+                  className="text-white/50 hover:text-[#00BFA6] transition-colors"
+                >
+                  <Instagram size={20} />
+                </motion.a>
+                <motion.a
+                  href="https://wa.me/255760777333"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
+                  className="text-white/50 hover:text-[#FFD479] transition-colors"
+                >
+                  <MessageCircle size={20} />
+                </motion.a>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
     </section>
   );
 }
