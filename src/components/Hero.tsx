@@ -17,7 +17,7 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
         style={{ opacity, scale, willChange: 'transform, opacity' }}
         className="absolute inset-0"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/85 via-[#001a3d]/45 to-[#002B5B]/92 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
         <img
           src={backgroundImage}
           alt="Aerial view of the Karibu Padel courts in Zanzibar"
@@ -41,41 +41,32 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
             className="mb-8"
           >
             <motion.h1
-              className="inline-flex mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-3 tracking-tight px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm shadow-[0_24px_60px_rgba(0,0,0,0.45)] ring-1 ring-white/20"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-2 tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
-              <span
-                className="bg-gradient-to-r from-[#FEFEFE] via-[#FFE39F] to-[#22E0C6] bg-clip-text text-transparent"
-                style={{ textShadow: '0 14px 35px rgba(0, 0, 0, 0.55)' }}
-              >
+              <span className="bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent">
                 Play.
               </span>
             </motion.h1>
             <motion.h1
-              className="inline-flex mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-3 tracking-tight px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm shadow-[0_24px_60px_rgba(0,0,0,0.45)] ring-1 ring-white/20"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-2 tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              <span
-                className="bg-gradient-to-r from-[#22E0C6] via-[#FFE39F] to-[#FEFEFE] bg-clip-text text-transparent"
-                style={{ textShadow: '0 14px 35px rgba(0, 0, 0, 0.55)' }}
-              >
+              <span className="bg-gradient-to-r from-[#00BFA6] via-[#FFD479] to-white bg-clip-text text-transparent">
                 Connect.
               </span>
             </motion.h1>
             <motion.h1
-              className="inline-flex mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm shadow-[0_24px_60px_rgba(0,0,0,0.45)] ring-1 ring-white/20"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.5 }}
             >
-              <span
-                className="bg-gradient-to-r from-[#FFE39F] via-[#FF8A7A] to-[#1ED9C2] bg-clip-text text-transparent"
-                style={{ textShadow: '0 14px 35px rgba(0, 0, 0, 0.6)' }}
-              >
+              <span className="bg-gradient-to-r from-[#FFD479] via-[#FF6B5A] to-[#00BFA6] bg-clip-text text-transparent">
                 Experience Zanzibar.
               </span>
             </motion.h1>
@@ -85,7 +76,7 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-lg md:text-xl text-white font-semibold drop-shadow-[0_12px_35px_rgba(0,0,0,0.45)] mb-8 md:mb-12 max-w-2xl mx-auto px-6 py-3 rounded-full bg-[#001a3d]/35 backdrop-blur-sm ring-1 ring-white/15"
+            className="text-lg md:text-xl text-white/90 mb-8 md:mb-12 max-w-2xl mx-auto px-4"
           >
             The No.1 Padel Court & Club in Zanzibar
           </motion.p>
