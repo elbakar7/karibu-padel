@@ -17,6 +17,8 @@ interface ResponsivePictureProps extends ImgProps {
   loading?: 'lazy' | 'eager';
   decoding?: 'auto' | 'sync' | 'async';
   fetchPriority?: 'high' | 'low' | 'auto';
+  lazyRootMargin?: string;
+  lazyThreshold?: number | number[];
 }
 
 export function ResponsivePicture({
@@ -30,6 +32,8 @@ export function ResponsivePicture({
   fetchPriority,
   style,
   onLoad,
+  lazyRootMargin = '600px 0px',
+  lazyThreshold = 0,
   ...imgProps
 }: ResponsivePictureProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -76,7 +80,8 @@ export function ResponsivePicture({
         }
       },
       {
-        rootMargin: '256px 0px',
+        rootMargin: lazyRootMargin,
+        threshold: lazyThreshold,
       },
     );
 
@@ -85,7 +90,7 @@ export function ResponsivePicture({
     return () => {
       observer.disconnect();
     };
-  }, [shouldLoad]);
+  }, [shouldLoad, lazyRootMargin, lazyThreshold]);
 
   useEffect(() => {
     if (!shouldLoad) {

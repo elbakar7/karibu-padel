@@ -59,6 +59,8 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
             loading="lazy"
             decoding="async"
             sizes="100vw"
+            lazyRootMargin="60% 0px"
+            lazyThreshold={0.1}
           />
         </motion.div>
       </motion.div>

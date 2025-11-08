@@ -126,6 +126,8 @@ export function Events({ eventImages }: EventsProps) {
                       loading="lazy"
                       decoding="async"
                       sizes="(min-width: 1024px) 50vw, 100vw"
+                      lazyRootMargin="400px 200px"
+                      lazyThreshold={0.15}
                     />
                   </motion.div>
 
