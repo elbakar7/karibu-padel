@@ -9,30 +9,39 @@ import { Contact } from './components/Contact';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BookingDialog } from './components/BookingDialog';
 import { SEO } from './components/SEO';
-
-import aerialHeroImage from '../IMG_3097.JPG';
-import courtsideImage from '../IMG_3051.JPG';
-import loungeImage from '../IMG_4458.JPG';
-import walkwayImage from '../IMG_4462.JPG';
+import {
+  courtsidePicture,
+  defaultOgImageUrl,
+  heroPicture,
+  loungePicture,
+  walkwayPicture,
+} from './media/images';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const heroImage = aerialHeroImage;
+  const heroImage = heroPicture;
 
-  const aboutImages = [courtsideImage, walkwayImage, loungeImage];
+  const aboutImages = [courtsidePicture, walkwayPicture, loungePicture];
 
-  const courtImage = courtsideImage;
+  const courtImage = courtsidePicture;
 
-  const eventImages = [courtsideImage, walkwayImage, aerialHeroImage, loungeImage];
+  const eventImages = [courtsidePicture, walkwayPicture, heroPicture, loungePicture];
 
-  const galleryImages = [courtsideImage, aerialHeroImage, walkwayImage, loungeImage, courtsideImage, walkwayImage];
+  const galleryImages = [
+    courtsidePicture,
+    heroPicture,
+    walkwayPicture,
+    loungePicture,
+    courtsidePicture,
+    walkwayPicture,
+  ];
 
-  const contactBg = walkwayImage;
+  const contactBg = walkwayPicture;
 
   return (
     <>
-      <SEO ogImage={aerialHeroImage} />
+      <SEO ogImage={defaultOgImageUrl} />
       <div className="relative bg-[#002B5B] overflow-x-hidden">
         <Navigation onBookingClick={() => setIsBookingOpen(true)} />
         <Hero backgroundImage={heroImage} onBookingClick={() => setIsBookingOpen(true)} />

@@ -1,8 +1,11 @@
 import { motion, useInView } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
 
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
+  
 interface AboutProps {
-  images: string[];
+  images: PictureAsset[];
 }
 
 export function About({ images }: AboutProps) {
@@ -120,7 +123,7 @@ export function About({ images }: AboutProps) {
             className="relative"
           >
             <div className="relative h-[600px] rounded-3xl overflow-hidden">
-              {images.map((image, index) => (
+                {images.map((image, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
@@ -128,12 +131,15 @@ export function About({ images }: AboutProps) {
                   transition={{ duration: 0.6 }}
                   className="absolute inset-0"
                 >
-                  <img
-                    src={image}
-                    alt={`Karibu Padel ${index + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                    <ResponsivePicture
+                      image={image}
+                      alt={`Karibu Padel ${index + 1}`}
+                      pictureClassName="block h-full w-full"
+                      imgClassName="w-full h-full object-cover"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      loading={currentImage === index ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
                 </motion.div>
               ))}
               

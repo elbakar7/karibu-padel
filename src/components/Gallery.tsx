@@ -1,9 +1,11 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
+  
 interface GalleryProps {
-  images: string[];
-}
+  images: PictureAsset[];
+  }
 
 export function Gallery({ images }: GalleryProps) {
   const ref = useRef(null);
@@ -88,12 +90,15 @@ export function Gallery({ images }: GalleryProps) {
                   className="relative flex-shrink-0 w-[400px] h-[500px] group"
                 >
                   <div className="relative h-full rounded-3xl overflow-hidden">
-                    <img
-                      src={image}
+                    <ResponsivePicture
+                      image={image}
                       alt={`Gallery ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      pictureClassName="block h-full w-full"
+                      imgClassName="w-full h-full object-cover"
                       draggable={false}
                       loading="lazy"
+                      decoding="async"
+                      sizes="(min-width: 1024px) 400px, 80vw"
                     />
                     
                     <motion.div

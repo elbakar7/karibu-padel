@@ -1,0 +1,55 @@
+[
+  {
+    "name": "hero",
+    "aspectRatio": 0.666592,
+    "originalWidth": 4487,
+    "originalHeight": 2991,
+    "generatedWidths": [
+      640,
+      1024,
+      1440,
+      1920
+    ],
+    "fallback": "src/assets/generated/hero/hero-1920.jpg",
+    "placeholder": "src/assets/generated/hero/hero-placeholder.webp"
+  },
+  {
+    "name": "courtside",
+    "aspectRatio": 0.561807,
+    "originalWidth": 4781,
+    "originalHeight": 2686,
+    "generatedWidths": [
+      560,
+      896,
+      1280
+    ],
+    "fallback": "src/assets/generated/courtside/courtside-1280.jpg",
+    "placeholder": "src/assets/generated/courtside/courtside-placeholder.webp"
+  },
+  {
+    "name": "lounge",
+    "aspectRatio": 0.666667,
+    "originalWidth": 4413,
+    "originalHeight": 2942,
+    "generatedWidths": [
+      560,
+      896,
+      1200
+    ],
+    "fallback": "src/assets/generated/lounge/lounge-1200.jpg",
+    "placeholder": "src/assets/generated/lounge/lounge-placeholder.webp"
+  },
+  {
+    "name": "walkway",
+    "aspectRatio": 0.666667,
+    "originalWidth": 4608,
+    "originalHeight": 3072,
+    "generatedWidths": [
+      640,
+      1024,
+      1400
+    ],
+    "fallback": "src/assets/generated/walkway/walkway-1400.jpg",
+    "placeholder": "src/assets/generated/walkway/walkway-placeholder.webp"
+  }
+]
