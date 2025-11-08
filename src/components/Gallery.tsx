@@ -99,6 +99,8 @@ export function Gallery({ images }: GalleryProps) {
                       loading="lazy"
                       decoding="async"
                       sizes="(min-width: 1024px) 400px, 80vw"
+                      lazyRootMargin="500px 500px"
+                      lazyThreshold={0.1}
                     />
                     
                     <motion.div

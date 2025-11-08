@@ -47,6 +47,8 @@ export function Contact({ backgroundImage }: ContactProps) {
           loading="lazy"
           decoding="async"
           sizes="100vw"
+          lazyRootMargin="50% 0px"
+          lazyThreshold={0.1}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#002B5B]/90 via-[#002B5B]/80 to-[#002B5B]" />
       </div>

@@ -131,15 +131,17 @@ export function About({ images }: AboutProps) {
                   transition={{ duration: 0.6 }}
                   className="absolute inset-0"
                 >
-                    <ResponsivePicture
-                      image={image}
-                      alt={`Karibu Padel ${index + 1}`}
-                      pictureClassName="block h-full w-full"
-                      imgClassName="w-full h-full object-cover"
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      loading={currentImage === index ? 'eager' : 'lazy'}
-                      decoding="async"
-                    />
+                  <ResponsivePicture
+                    image={image}
+                    alt={`Karibu Padel ${index + 1}`}
+                    pictureClassName="block h-full w-full"
+                    imgClassName="w-full h-full object-cover"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    loading={currentImage === index ? 'eager' : 'lazy'}
+                    decoding="async"
+                    lazyRootMargin="480px 0px"
+                    lazyThreshold={0.25}
+                  />
                 </motion.div>
               ))}
               
