@@ -245,7 +245,7 @@ export function Contact({ backgroundImage }: ContactProps) {
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
                   className="text-blue-400 hover:text-blue-300 transition-colors text-xs md:text-sm"
                 >
-                  Designed by Island Tech Solution
+                  designed by island tech solution
                 </motion.a>
               </div>
               <div className="flex items-center gap-6">
