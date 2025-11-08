@@ -1,9 +1,11 @@
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { Sunrise, Globe, Moon, Wine } from 'lucide-react';
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
 
 interface CourtExperienceProps {
-  courtImage: string;
+  courtImage: PictureAsset;
 }
 
 export function CourtExperience({ courtImage }: CourtExperienceProps) {
@@ -14,7 +16,7 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
     offset: ['start end', 'end start'],
   });
 
-  const brightness = useTransform(scrollYProgress, [0, 0.5, 1], [0.4, 1, 0.6]);
+  const brightnessFilter = useTransform(scrollYProgress, [0, 0.5, 1], ['brightness(0.4)', 'brightness(1)', 'brightness(0.6)']);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.1]);
 
   const features = [
@@ -46,18 +48,19 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
 
   return (
     <section id="experience" ref={ref} className="relative py-32 bg-[#001a3d] overflow-hidden">
-      <motion.div
-        className="absolute inset-0"
-        style={{ scale }}
-      >
+      <motion.div className="absolute inset-0" style={{ scale }}>
         <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d] via-[#001a3d]/50 to-[#001a3d] z-10" />
-        <motion.img
-          src={courtImage}
-          alt="Padel Court"
-          className="w-full h-full object-cover"
-          style={{ filter: `brightness(${brightness})` }}
-          loading="lazy"
-        />
+        <motion.div className="absolute inset-0" style={{ filter: brightnessFilter }}>
+          <ResponsivePicture
+            image={courtImage}
+            alt="Padel Court"
+            pictureClassName="absolute inset-0 h-full w-full"
+            imgClassName="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            sizes="100vw"
+          />
+        </motion.div>
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">

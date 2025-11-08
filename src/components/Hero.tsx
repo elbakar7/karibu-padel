@@ -1,8 +1,12 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
+import { useEffect } from 'react';
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
+
 interface HeroProps {
-  backgroundImage: string;
+  backgroundImage: PictureAsset;
   onBookingClick: () => void;
 }
 
@@ -11,21 +15,43 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const scale = useTransform(scrollY, [0, 500], [1, 1.2]);
 
+  useEffect(() => {
+    const selector = 'link[data-hero-preload="true"]';
+    let preloadLink = document.head.querySelector<HTMLLinkElement>(selector);
+
+    if (!preloadLink) {
+      preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'image';
+      preloadLink.fetchPriority = 'high';
+      preloadLink.setAttribute('data-hero-preload', 'true');
+      document.head.appendChild(preloadLink);
+    }
+
+    preloadLink.href = backgroundImage.img.src;
+
+    return () => {
+      if (preloadLink?.parentElement) {
+        preloadLink.parentElement.removeChild(preloadLink);
+      }
+    };
+  }, [backgroundImage]);
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      <motion.div
-        style={{ opacity, scale, willChange: 'transform, opacity' }}
-        className="absolute inset-0"
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
-        <img
-          src={backgroundImage}
-          alt="Aerial view of the Karibu Padel courts in Zanzibar"
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-        />
-      </motion.div>
+        <motion.div style={{ opacity, scale, willChange: 'transform, opacity' }} className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
+          <ResponsivePicture
+            image={backgroundImage}
+            alt="Aerial view of the Karibu Padel courts in Zanzibar"
+            pictureClassName="absolute inset-0 h-full w-full"
+            imgClassName="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            sizes="100vw"
+          />
+        </motion.div>
 
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-4">
         <motion.div

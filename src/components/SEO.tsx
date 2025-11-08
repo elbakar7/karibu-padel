@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import defaultOgImage from '../../IMG_3097.JPG';
+import { defaultOgImageUrl } from '../media/images';
 
 interface SEOProps {
   title?: string;
@@ -13,7 +13,7 @@ export function SEO({
   title = 'Karibu Padel - No.1 Padel Court & Club in Zanzibar | Africa House Garden',
   description = 'Experience world-class padel at Karibu Padel, Zanzibar\'s premier padel club. Located in Africa House Garden with stunning ocean views. Book your court now for lessons, tournaments, and social events.',
   keywords = 'padel zanzibar, padel court zanzibar, tennis zanzibar, africa house garden, karibu padel, padel club tanzania, sports zanzibar, ocean view padel, padel lessons, padel tournaments, beach sports zanzibar',
-  ogImage = defaultOgImage,
+    ogImage = defaultOgImageUrl,
 }: SEOProps) {
   useEffect(() => {
     document.title = title;

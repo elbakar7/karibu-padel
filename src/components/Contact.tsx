@@ -1,9 +1,11 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { MapPin, Phone, Instagram, MessageCircle } from 'lucide-react';
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
 
 interface ContactProps {
-  backgroundImage: string;
+  backgroundImage: PictureAsset;
 }
 
 export function Contact({ backgroundImage }: ContactProps) {
@@ -37,12 +39,15 @@ export function Contact({ backgroundImage }: ContactProps) {
   return (
     <section id="contact" ref={ref} className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center">
       <div className="absolute inset-0 z-0">
-          <img
-            src={backgroundImage}
-            alt="Karibu Padel walkway overlooking the Indian Ocean"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+        <ResponsivePicture
+          image={backgroundImage}
+          alt="Karibu Padel walkway overlooking the Indian Ocean"
+          pictureClassName="absolute inset-0 h-full w-full"
+          imgClassName="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          sizes="100vw"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-[#002B5B]/90 via-[#002B5B]/80 to-[#002B5B]" />
       </div>
 

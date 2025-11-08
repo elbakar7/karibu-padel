@@ -1,9 +1,11 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { Trophy, Users, Calendar, Sparkles } from 'lucide-react';
+import type { PictureAsset } from '../types/media';
+import { ResponsivePicture } from './ResponsivePicture';
 
 interface EventsProps {
-  eventImages: string[];
+  eventImages: PictureAsset[];
 }
 
 export function Events({ eventImages }: EventsProps) {
@@ -64,166 +66,174 @@ export function Events({ eventImages }: EventsProps) {
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-[#00BFA6] tracking-widest uppercase mb-4 block"
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
           >
-            Join The Community
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
-          >
-            <span className="bg-gradient-to-r from-[#FFD479] via-[#FF6B5A] to-[#00BFA6] bg-clip-text text-transparent">
-              Events & Community
-            </span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/70 max-w-2xl mx-auto"
-          >
-            More than just a sport — it's a lifestyle. Join our vibrant community for tournaments, social gatherings, and unforgettable moments.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {events.map((event, index) => (
-            <motion.div
-              key={event.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="relative group cursor-pointer"
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-[#00BFA6] tracking-widest uppercase mb-4 block"
             >
-              <div className="relative h-[400px] rounded-3xl overflow-hidden">
-                <motion.img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.4 }}
-                  loading="lazy"
-                />
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B] via-[#002B5B]/60 to-transparent" />
-                
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-30 transition-opacity duration-500"
-                  style={{ 
-                    background: `linear-gradient(to bottom right, ${event.color})` 
-                  }}
-                />
+              Join The Community
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
+            >
+              <span className="bg-gradient-to-r from-[#FFD479] via-[#FF6B5A] to-[#00BFA6] bg-clip-text text-transparent">
+                Events & Community
+              </span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-white/70 max-w-2xl mx-auto"
+            >
+              More than just a sport — it's a lifestyle. Join our vibrant community for tournaments, social gatherings, and unforgettable moments.
+            </motion.p>
+          </motion.div>
 
-                <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
+          <div className="grid md:grid-cols-2 gap-8">
+            {events.map((event, index) => (
+              <motion.div
+                key={event.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="relative group cursor-pointer"
+              >
+                <div className="relative h-[400px] rounded-3xl overflow-hidden">
                   <motion.div
-                    className={`p-4 bg-gradient-to-br ${event.color} rounded-2xl`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    className="absolute inset-0"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.4 }}
+                    style={{ willChange: 'transform' }}
                   >
-                    <event.icon className="text-white" size={28} />
+                    <ResponsivePicture
+                      image={event.image}
+                      alt={event.title}
+                      pictureClassName="absolute inset-0 h-full w-full"
+                      imgClassName="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
                   </motion.div>
-                  
-                  <motion.div
-                    className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
-                  >
-                    <p className="text-white/90">{event.date}</p>
-                  </motion.div>
-                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <motion.h3
-                    className="text-white text-2xl mb-3"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.4 }}
-                  >
-                    {event.title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-white/80 mb-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.5 }}
-                  >
-                    {event.description}
-                  </motion.p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B] via-[#002B5B]/60 to-transparent" />
 
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.6 }}
-                  >
-                    <motion.button
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 text-[#00BFA6] group/btn"
+                    className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(to bottom right, ${event.color})`,
+                    }}
+                  />
+
+                  <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
+                    <motion.div
+                      className={`p-4 bg-gradient-to-br ${event.color} rounded-2xl`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
                     >
-                      <span>Learn More</span>
-                      <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                      <event.icon className="text-white" size={28} />
+                    </motion.div>
+
+                    <motion.div
+                      className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
+                    >
+                      <p className="text-white/90">{event.date}</p>
+                    </motion.div>
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.h3
+                      className="text-white text-2xl mb-3"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.4 }}
+                    >
+                      {event.title}
+                    </motion.h3>
+                    <motion.p
+                      className="text-white/80 mb-6"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.5 }}
+                    >
+                      {event.description}
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.6 }}
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05, x: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 text-[#00BFA6] group/btn"
                       >
-                        →
-                      </motion.span>
-                    </motion.button>
-                  </motion.div>
+                        <span>Learn More</span>
+                        <motion.span
+                          animate={{ x: [0, 5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          →
+                        </motion.span>
+                      </motion.button>
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r"
+                    style={{
+                      background: `linear-gradient(to right, ${event.color})`,
+                    }}
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.4 }}
+                  />
                 </div>
+              </motion.div>
+            ))}
+          </div>
 
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r"
-                  style={{ 
-                    background: `linear-gradient(to right, ${event.color})` 
-                  }}
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.4 }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
-        >
-          <motion.a
-            href="https://www.instagram.com/karibupadelclub"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(255, 107, 90, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-12 py-4 bg-gradient-to-r from-[#FF6B5A] to-[#FFD479] rounded-full text-white relative overflow-hidden group"
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-16 text-center"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#00BFA6] to-[#FFD479]"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.4 }}
-            />
-            <span className="relative z-10">Join the Movement → DM us on Instagram</span>
-          </motion.a>
-        </motion.div>
-      </div>
+            <motion.a
+              href="https://www.instagram.com/karibupadelclub"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(255, 107, 90, 0.5)' }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-12 py-4 bg-gradient-to-r from-[#FF6B5A] to-[#FFD479] rounded-full text-white relative overflow-hidden group"
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-[#00BFA6] to-[#FFD479]"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.4 }}
+              />
+              <span className="relative z-10">Join the Movement → DM us on Instagram</span>
+            </motion.a>
+          </motion.div>
+        </div>
     </section>
   );
 }
