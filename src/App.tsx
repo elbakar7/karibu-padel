@@ -10,39 +10,32 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BookingDialog } from './components/BookingDialog';
 import { SEO } from './components/SEO';
 
-import heroActionImage from '../pexels-criticalimagery-32896996.jpg';
-import communityVibesImage from '../pexels-khezez-34079544.jpg';
-import nightMatchImage from '../pexels-lluis-aragones-968548-4536850.jpg';
-import oceanSunsetImage from '../pexels-roger-aribau-gisbert-19420784-8485104.jpg';
+import aerialHeroImage from '../IMG_3097.JPG';
+import courtsideImage from '../IMG_3051.JPG';
+import loungeImage from '../IMG_4458.JPG';
+import walkwayImage from '../IMG_4462.JPG';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const heroImage = heroActionImage;
+  const heroImage = aerialHeroImage;
 
-  const aboutImages = [heroActionImage, communityVibesImage, oceanSunsetImage];
+  const aboutImages = [courtsideImage, walkwayImage, loungeImage];
 
-  const courtImage = nightMatchImage;
+  const courtImage = courtsideImage;
 
-  const eventImages = [heroActionImage, communityVibesImage, nightMatchImage, oceanSunsetImage];
+  const eventImages = [courtsideImage, walkwayImage, aerialHeroImage, loungeImage];
 
-  const galleryImages = [
-    heroActionImage,
-    communityVibesImage,
-    nightMatchImage,
-    oceanSunsetImage,
-    communityVibesImage,
-    nightMatchImage,
-  ];
+  const galleryImages = [courtsideImage, aerialHeroImage, walkwayImage, loungeImage, courtsideImage, walkwayImage];
 
-  const contactBg = oceanSunsetImage;
+  const contactBg = walkwayImage;
 
   return (
     <>
-      <SEO ogImage={heroActionImage} />
+      <SEO ogImage={aerialHeroImage} />
       <div className="relative bg-[#002B5B] overflow-x-hidden">
         <Navigation onBookingClick={() => setIsBookingOpen(true)} />
-        <Hero videoUrl={heroImage} onBookingClick={() => setIsBookingOpen(true)} />
+        <Hero backgroundImage={heroImage} onBookingClick={() => setIsBookingOpen(true)} />
         <About images={aboutImages} />
         <CourtExperience courtImage={courtImage} />
         <Events eventImages={eventImages} />

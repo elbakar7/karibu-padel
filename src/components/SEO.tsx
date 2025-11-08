@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import defaultOgImage from '../../pexels-criticalimagery-32896996.jpg';
+import defaultOgImage from '../../IMG_3097.JPG';
 
 interface SEOProps {
   title?: string;

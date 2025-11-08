@@ -37,12 +37,12 @@ export function Contact({ backgroundImage }: ContactProps) {
   return (
     <section id="contact" ref={ref} className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center">
       <div className="absolute inset-0 z-0">
-        <img
-          src={backgroundImage}
-          alt="Ocean View"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+          <img
+            src={backgroundImage}
+            alt="Karibu Padel walkway overlooking the Indian Ocean"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         <div className="absolute inset-0 bg-gradient-to-b from-[#002B5B]/90 via-[#002B5B]/80 to-[#002B5B]" />
       </div>
 
