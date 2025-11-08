@@ -4,7 +4,6 @@ import { MotionConfig } from 'motion/react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { SEO } from './components/SEO';
-import { SkipNav } from './components/SkipNav';
 import { SectionFallback } from './components/SectionFallback';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import {
@@ -70,7 +69,6 @@ export default function App() {
     <MotionConfig reducedMotion={prefersReducedMotion ? 'always' : 'never'}>
       <SEO ogImage={defaultOgImageUrl} />
       <div className="relative bg-[#002B5B] overflow-x-hidden">
-        <SkipNav />
         <Navigation onBookingClick={() => setIsBookingOpen(true)} />
         <main id="main-content" tabIndex={-1} className="focus:outline-none">
           <Hero backgroundImage={heroImage} onBookingClick={() => setIsBookingOpen(true)} />
