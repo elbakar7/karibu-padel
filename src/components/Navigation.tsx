@@ -33,7 +33,10 @@ export function Navigation({ onBookingClick }: NavigationProps) {
   return (
     <motion.nav
       style={{ backgroundColor, backdropFilter: backdropBlur }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/10"
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 transition-shadow duration-300 ${
+        isScrolled ? 'shadow-lg shadow-black/20' : ''
+      }`}
+      aria-label="Primary navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -47,7 +50,12 @@ export function Navigation({ onBookingClick }: NavigationProps) {
               <span className="text-[#002B5B]">🎾</span>
             </div>
             <div>
-              <h1 className="text-white tracking-wider">KARIBU PADEL</h1>
+              <p
+                className="text-white tracking-wider text-base font-semibold uppercase"
+                aria-label="Karibu Padel"
+              >
+                KARIBU PADEL
+              </p>
               <p className="text-[#00BFA6] text-xs">Zanzibar's Finest</p>
             </div>
           </motion.div>
@@ -93,6 +101,11 @@ export function Navigation({ onBookingClick }: NavigationProps) {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-white"
+            type="button"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="primary-navigation"
+            aria-haspopup="true"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -105,6 +118,7 @@ export function Navigation({ onBookingClick }: NavigationProps) {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           className="md:hidden bg-[#002B5B]/95 backdrop-blur-xl border-t border-white/10"
+          id="primary-navigation"
         >
           <div className="px-4 py-6 space-y-4">
             {['About', 'Experience', 'Events', 'Gallery', 'Contact'].map((item) => (

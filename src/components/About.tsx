@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
   
 interface AboutProps {
   images: PictureAsset[];
@@ -12,34 +13,45 @@ export function About({ images }: AboutProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
   const [currentImage, setCurrentImage] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || prefersReducedMotion) {
+      return undefined;
+    }
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [images.length, isInView]);
+  }, [images.length, isInView, prefersReducedMotion]);
 
   return (
     <section id="about" ref={ref} className="relative py-32 bg-gradient-to-b from-[#002B5B] to-[#001a3d] overflow-hidden">
-      <motion.div
+        <motion.div
         className="absolute top-20 right-10 w-72 h-72 bg-[#00BFA6]/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  scale: [1, 1.2, 1],
+                  x: [0, 50, 0],
+                  y: [0, 30, 0],
+                }
+          }
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute bottom-20 left-10 w-96 h-96 bg-[#FFD479]/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, -30, 0],
-          y: [0, -50, 0],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  scale: [1, 1.3, 1],
+                  x: [0, -30, 0],
+                  y: [0, -50, 0],
+                }
+          }
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -101,12 +113,12 @@ export function About({ images }: AboutProps) {
                 { icon: '🌴', text: 'Tropical Vibe' },
                 { icon: '🏆', text: 'Tournaments' },
               ].map((item, index) => (
-                <motion.div
+                  <motion.div
                   key={item.text}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.2, delay: 0.35 + index * 0.05 }}
-                  whileHover={{ scale: 1.05, y: -3 }}
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.05, y: -3 }}
                   className="flex items-center gap-2 px-4 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full"
                 >
                   <span>{item.icon}</span>
@@ -124,7 +136,7 @@ export function About({ images }: AboutProps) {
           >
             <div className="relative h-[600px] rounded-3xl overflow-hidden">
                 {images.map((image, index) => (
-                <motion.div
+                  <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: currentImage === index ? 1 : 0 }}
@@ -147,10 +159,10 @@ export function About({ images }: AboutProps) {
               
               <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-transparent" />
               
-              <motion.div
+                <motion.div
                 className="absolute top-6 right-6 bg-gradient-to-br from-[#00BFA6] to-[#FFD479] px-6 py-3 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  animate={prefersReducedMotion ? undefined : { y: [0, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               >
                 <p className="text-[#002B5B]">#1 in Zanzibar</p>
               </motion.div>
@@ -164,7 +176,7 @@ export function About({ images }: AboutProps) {
                 >
                   <div className="flex gap-2 mb-4">
                     {images.map((_, index) => (
-                      <motion.div
+                    <motion.div
                         key={index}
                         className={`h-1 rounded-full flex-1 ${
                           currentImage === index ? 'bg-[#00BFA6]' : 'bg-white/30'
@@ -178,13 +190,17 @@ export function About({ images }: AboutProps) {
               </div>
             </div>
 
-            <motion.div
+              <motion.div
               className="absolute -z-10 inset-0 bg-gradient-to-br from-[#00BFA6]/20 to-[#FFD479]/20 rounded-3xl blur-2xl"
-              animate={{
-                scale: [1, 1.05, 1],
-                rotate: [0, 5, 0],
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                animate={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        scale: [1, 1.05, 1],
+                        rotate: [0, 5, 0],
+                      }
+                }
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             />
           </motion.div>
         </div>
