@@ -46,7 +46,7 @@ export function Navigation({ onBookingClick }: NavigationProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex items-center gap-3"
+              className="flex items-center"
             >
               <img
                 src={logo}
@@ -54,15 +54,6 @@ export function Navigation({ onBookingClick }: NavigationProps) {
                 loading="eager"
                 className="h-12 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
               />
-              <div>
-                <p
-                  className="text-white tracking-wider text-base font-semibold uppercase"
-                  aria-label="Karibu Padel"
-                >
-                  KARIBU PADEL
-                </p>
-                <p className="text-[#00BFA6] text-xs">Zanzibar's Finest</p>
-              </div>
             </motion.div>
 
           <div className="hidden md:flex items-center gap-8">
