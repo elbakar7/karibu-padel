@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-import logo from '../../logo.png';
+import logo from '../assets/logo.png';
 
 interface NavigationProps {
   onBookingClick: () => void;
@@ -40,32 +40,30 @@ export function Navigation({ onBookingClick }: NavigationProps) {
       }`}
       aria-label="Primary navigation"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-12 h-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-3"
+            >
               <img
                 src={logo}
                 alt="Karibu Padel Club logo"
                 loading="eager"
-                className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                className="h-12 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
               />
-            </div>
-            <div>
-              <p
-                className="text-white tracking-wider text-base font-semibold uppercase"
-                aria-label="Karibu Padel"
-              >
-                KARIBU PADEL
-              </p>
-              <p className="text-[#00BFA6] text-xs">Zanzibar's Finest</p>
-            </div>
-          </motion.div>
+              <div>
+                <p
+                  className="text-white tracking-wider text-base font-semibold uppercase"
+                  aria-label="Karibu Padel"
+                >
+                  KARIBU PADEL
+                </p>
+                <p className="text-[#00BFA6] text-xs">Zanzibar's Finest</p>
+              </div>
+            </motion.div>
 
           <div className="hidden md:flex items-center gap-8">
             {['About', 'Experience', 'Events', 'Gallery', 'Contact'].map((item, index) => (
