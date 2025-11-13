@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import './App.css';
 
 import heroImage from '../IMG_3117.JPG';
-import logo from '../logo.png';
+import logo from './assets/logo.png';
 
 type ServiceCard = {
   title: string;
