@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
+import logo from '../../logo.png';
+
 interface NavigationProps {
   onBookingClick: () => void;
 }
@@ -46,8 +48,13 @@ export function Navigation({ onBookingClick }: NavigationProps) {
             transition={{ duration: 0.4 }}
             className="flex items-center gap-3"
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-[#00BFA6] to-[#FFD479] rounded-full flex items-center justify-center">
-              <span className="text-[#002B5B]">🎾</span>
+            <div className="w-12 h-12">
+              <img
+                src={logo}
+                alt="Karibu Padel Club logo"
+                loading="eager"
+                className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+              />
             </div>
             <div>
               <p
