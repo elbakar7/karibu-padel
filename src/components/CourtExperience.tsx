@@ -153,9 +153,9 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: '2', label: 'Premium Courts' },
-                { value: '12', label: 'Hours Daily' },
-                { value: '500+', label: 'Happy Players' },
+                { value: '1', label: 'Premium Courts' },
+                { value: '14', label: 'Hours Daily' },
+                { value: '50+', label: 'Happy Players' },
                 { value: '#1', label: 'In Zanzibar' },
               ].map((stat, index) => (
                 <motion.div
