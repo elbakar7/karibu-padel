@@ -1,15 +1,7 @@
 import type { PictureAsset } from '../types/media';
 
-import heroAvif640 from '../assets/generated/hero/hero-640.avif';
-import heroAvif1024 from '../assets/generated/hero/hero-1024.avif';
-import heroAvif1440 from '../assets/generated/hero/hero-1440.avif';
-import heroAvif1920 from '../assets/generated/hero/hero-1920.avif';
-import heroWebp640 from '../assets/generated/hero/hero-640.webp';
-import heroWebp1024 from '../assets/generated/hero/hero-1024.webp';
-import heroWebp1440 from '../assets/generated/hero/hero-1440.webp';
-import heroWebp1920 from '../assets/generated/hero/hero-1920.webp';
-import heroFallback from '../assets/generated/hero/hero-1920.jpg';
 import heroPlaceholder from '../assets/generated/hero/hero-placeholder.webp';
+import heroImage from '../../IMG_3117.JPG';
 
 import courtsideAvif560 from '../assets/generated/courtside/courtside-560.avif';
 import courtsideAvif896 from '../assets/generated/courtside/courtside-896.avif';
@@ -43,31 +35,20 @@ const toSrcSet = (entries: Array<[string, number]>) =>
 
 const roundHeight = (width: number, aspectRatio: number) => Math.round(width * aspectRatio);
 
+const HERO_WIDTH = 4608;
+const HERO_HEIGHT = 3072;
+
 export const heroPicture: PictureAsset = {
   sources: [
     {
-      type: 'image/avif',
-      srcSet: toSrcSet([
-        [heroAvif640, 640],
-        [heroAvif1024, 1024],
-        [heroAvif1440, 1440],
-        [heroAvif1920, 1920],
-      ]),
-    },
-    {
-      type: 'image/webp',
-      srcSet: toSrcSet([
-        [heroWebp640, 640],
-        [heroWebp1024, 1024],
-        [heroWebp1440, 1440],
-        [heroWebp1920, 1920],
-      ]),
+      type: 'image/jpeg',
+      srcSet: heroImage,
     },
   ],
   img: {
-    src: heroFallback,
-    width: 1920,
-    height: roundHeight(1920, 0.666592),
+    src: heroImage,
+    width: HERO_WIDTH,
+    height: HERO_HEIGHT,
   },
   placeholder: heroPlaceholder,
 };
@@ -153,4 +134,4 @@ export const walkwayPicture: PictureAsset = {
   placeholder: walkwayPlaceholder,
 };
 
-export const defaultOgImageUrl = heroFallback;
+export const defaultOgImageUrl = heroImage;
