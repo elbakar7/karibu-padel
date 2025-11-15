@@ -15,7 +15,7 @@ export function FloatingWhatsApp() {
       href="https://wa.me/255760777333?text=Hi%20Karibu%20Padel!%20I'd%20like%20to%20book%20a%20padel%20session."
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#FFD479]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#002B5B] rounded-full"
+        className="fixed bottom-6 right-6 z-50 group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#1DB954]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#002B5B] rounded-full"
       initial={initialState}
       animate={animateState}
       transition={{ duration: 0.3, delay: 0.4 }}

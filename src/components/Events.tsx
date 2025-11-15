@@ -13,52 +13,52 @@ export function Events({ eventImages }: EventsProps) {
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   const events = [
-    {
-      icon: Trophy,
-      title: 'Monthly Tournaments',
-      description: 'Compete with the best players in Zanzibar',
-      date: 'Every Last Saturday',
-      image: eventImages[0],
-      color: 'from-[#FFD479] to-[#FF6B5A]',
-    },
-    {
-      icon: Users,
-      title: 'Social Mixers',
-      description: 'Meet fellow padel enthusiasts and make friends',
-      date: 'Every Friday Evening',
-      image: eventImages[1],
-      color: 'from-[#00BFA6] to-[#FFD479]',
-    },
-    {
-      icon: Calendar,
-      title: 'Pro Clinics',
-      description: 'Learn from international padel coaches',
-      date: 'Weekly Sessions',
-      image: eventImages[2],
-      color: 'from-[#002B5B] to-[#00BFA6]',
-    },
-    {
-      icon: Sparkles,
-      title: 'VIP Nights',
-      description: 'Exclusive events with cocktails and ocean views',
-      date: 'Monthly Special',
-      image: eventImages[3],
-      color: 'from-[#FF6B5A] to-[#FFD479]',
-    },
+      {
+        icon: Trophy,
+        title: 'Monthly Tournaments',
+        description: 'Compete with the best players in Zanzibar',
+        date: 'Every Last Saturday',
+        image: eventImages[0],
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Users,
+        title: 'Social Mixers',
+        description: 'Meet fellow padel enthusiasts and make friends',
+        date: 'Every Friday Evening',
+        image: eventImages[1],
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Calendar,
+        title: 'Pro Clinics',
+        description: 'Learn from international padel coaches',
+        date: 'Weekly Sessions',
+        image: eventImages[2],
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Sparkles,
+        title: 'VIP Nights',
+        description: 'Exclusive events with cocktails and ocean views',
+        date: 'Monthly Special',
+        image: eventImages[3],
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
   ];
 
   return (
     <section id="events" ref={ref} className="relative py-32 bg-gradient-to-b from-[#001a3d] to-[#002B5B] overflow-hidden">
-      <motion.div
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00BFA6]/5 rounded-full blur-3xl"
+        <motion.div
+          className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1DB954]/10 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           x: [0, 100, 0],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#FFD479]/5 rounded-full blur-3xl"
+        <motion.div
+          className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1DB954]/6 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.4, 1],
           x: [0, -80, 0],
@@ -73,11 +73,11 @@ export function Events({ eventImages }: EventsProps) {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-[#00BFA6] tracking-widest uppercase mb-4 block"
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-[#1DB954] tracking-widest uppercase mb-4 block"
             >
               Join The Community
             </motion.span>
@@ -86,8 +86,8 @@ export function Events({ eventImages }: EventsProps) {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
-            >
-              <span className="bg-gradient-to-r from-[#FFD479] via-[#FF6B5A] to-[#00BFA6] bg-clip-text text-transparent">
+              >
+                <span className="bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent">
                 Events & Community
               </span>
             </motion.h2>
@@ -182,10 +182,10 @@ export function Events({ eventImages }: EventsProps) {
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.6, delay: index * 0.15 + 0.6 }}
                     >
-                      <motion.button
-                        whileHover={{ scale: 1.05, x: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 text-[#00BFA6] group/btn"
+                        <motion.button
+                          whileHover={{ scale: 1.05, x: 5 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 text-[#1DB954] group/btn"
                       >
                         <span>Learn More</span>
                         <motion.span
@@ -218,16 +218,16 @@ export function Events({ eventImages }: EventsProps) {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16 text-center"
           >
-            <motion.a
-              href="https://www.instagram.com/karibupadelclub"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(255, 107, 90, 0.5)' }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-4 bg-gradient-to-r from-[#FF6B5A] to-[#FFD479] rounded-full text-white relative overflow-hidden group"
+              <motion.a
+                href="https://www.instagram.com/karibupadelclub"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(29,185,84,0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block px-12 py-4 bg-[#1DB954] rounded-full text-white relative overflow-hidden group"
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#00BFA6] to-[#FFD479]"
+                  className="absolute inset-0 bg-[#1DB954]/90"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.4 }}

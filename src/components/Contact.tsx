@@ -60,8 +60,8 @@ export function Contact({ backgroundImage }: ContactProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-[#002B5B]/90 via-[#002B5B]/80 to-[#002B5B]" />
       </div>
 
-      <motion.div
-        className="absolute top-20 right-20 w-96 h-96 bg-[#00BFA6]/20 rounded-full blur-3xl pointer-events-none"
+        <motion.div
+          className="absolute top-20 right-20 w-96 h-96 bg-[#1DB954]/20 rounded-full blur-3xl pointer-events-none"
         animate={
           prefersReducedMotion
             ? undefined
@@ -73,8 +73,8 @@ export function Contact({ backgroundImage }: ContactProps) {
         }
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute bottom-20 left-20 w-96 h-96 bg-[#FFD479]/20 rounded-full blur-3xl pointer-events-none"
+        <motion.div
+          className="absolute bottom-20 left-20 w-96 h-96 bg-[#1DB954]/10 rounded-full blur-3xl pointer-events-none"
         animate={
           prefersReducedMotion
             ? undefined
@@ -98,7 +98,7 @@ export function Contact({ backgroundImage }: ContactProps) {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-[#00BFA6] tracking-widest uppercase mb-4 block"
+              className="text-[#1DB954] tracking-widest uppercase mb-4 block"
           >
             Get In Touch
           </motion.span>
@@ -109,7 +109,7 @@ export function Contact({ backgroundImage }: ContactProps) {
             className="text-3xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6"
             id="contact-heading"
           >
-            <span className="bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent">
               Book Your Session
             </span>
           </motion.h2>
@@ -131,7 +131,7 @@ export function Contact({ backgroundImage }: ContactProps) {
             transition={{ duration: 0.3, delay: 0.3 }}
             whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-gradient-to-r from-[#00BFA6] to-[#FFD479] rounded-full text-[#002B5B] shadow-lg hover:shadow-[0_0_40px_rgba(0,191,166,0.5)] transition-shadow"
+              className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-[#1DB954] rounded-full text-[#002B5B] shadow-lg hover:shadow-[0_0_40px_rgba(29,185,84,0.5)] transition-shadow"
           >
             <MessageCircle size={24} />
             <span>Book via WhatsApp</span>
@@ -152,8 +152,8 @@ export function Contact({ backgroundImage }: ContactProps) {
               className="relative group"
             >
               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-white/30 transition-all duration-300 h-full">
-                <motion.div
-                  className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-[#00BFA6] to-[#FFD479] flex items-center justify-center mb-4 md:mb-6"
+                  <motion.div
+                    className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#1DB954] flex items-center justify-center mb-4 md:mb-6"
                   whileHover={prefersReducedMotion ? undefined : { rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -161,11 +161,11 @@ export function Contact({ backgroundImage }: ContactProps) {
                 </motion.div>
 
                 <h3 className="text-white mb-2">{item.title}</h3>
-                <p className="text-[#00BFA6] mb-1 break-words">{item.value}</p>
+                  <p className="text-[#1DB954] mb-1 break-words">{item.value}</p>
                 <p className="text-white/60 text-sm">{item.detail}</p>
 
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00BFA6] to-[#FFD479]"
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-[#1DB954]"
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
@@ -188,7 +188,7 @@ export function Contact({ backgroundImage }: ContactProps) {
               transition={{ duration: 0.3, delay: 0.6 }}
               className="mb-6 md:mb-8"
             >
-              <div className="inline-flex items-center gap-3 px-6 md:px-8 py-3 bg-gradient-to-r from-[#00BFA6]/20 to-[#FFD479]/20 border border-white/10 rounded-full">
+              <div className="inline-flex items-center gap-3 px-6 md:px-8 py-3 bg-[#1DB954]/15 border border-white/10 rounded-full">
                 <span className="text-2xl md:text-3xl" role="img" aria-label="Tropical island">
                   🏝️
                 </span>
@@ -249,21 +249,21 @@ export function Contact({ backgroundImage }: ContactProps) {
                 </motion.a>
               </div>
               <div className="flex items-center gap-6">
-                <motion.a
-                  href="https://www.instagram.com/karibupadelclub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
-                  className="text-white/50 hover:text-[#00BFA6] transition-colors"
+                  <motion.a
+                    href="https://www.instagram.com/karibupadelclub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
+                    className="text-white/50 hover:text-[#1DB954] transition-colors"
                 >
                   <Instagram size={20} />
                 </motion.a>
-                <motion.a
-                  href="https://wa.me/255760777333"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
-                  className="text-white/50 hover:text-[#FFD479] transition-colors"
+                  <motion.a
+                    href="https://wa.me/255760777333"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.2 }}
+                    className="text-white/50 hover:text-[#1DB954] transition-colors"
                 >
                   <MessageCircle size={20} />
                 </motion.a>

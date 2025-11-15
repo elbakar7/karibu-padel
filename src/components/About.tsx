@@ -26,9 +26,9 @@ export function About({ images }: AboutProps) {
   }, [images.length, isInView, prefersReducedMotion]);
 
   return (
-    <section id="about" ref={ref} className="relative py-32 bg-gradient-to-b from-[#002B5B] to-[#001a3d] overflow-hidden">
+      <section id="about" ref={ref} className="relative py-32 bg-gradient-to-b from-[#002B5B] to-[#001a3d] overflow-hidden">
         <motion.div
-        className="absolute top-20 right-10 w-72 h-72 bg-[#00BFA6]/10 rounded-full blur-3xl"
+          className="absolute top-20 right-10 w-72 h-72 bg-[#1DB954]/10 rounded-full blur-3xl"
           animate={
             prefersReducedMotion
               ? undefined
@@ -40,8 +40,8 @@ export function About({ images }: AboutProps) {
           }
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute bottom-20 left-10 w-96 h-96 bg-[#FFD479]/10 rounded-full blur-3xl"
+        <motion.div
+          className="absolute bottom-20 left-10 w-96 h-96 bg-[#1DB954]/5 rounded-full blur-3xl"
           animate={
             prefersReducedMotion
               ? undefined
@@ -67,7 +67,7 @@ export function About({ images }: AboutProps) {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="inline-block mb-4"
             >
-              <span className="text-[#00BFA6] tracking-widest uppercase">Welcome to Paradise</span>
+                <span className="text-[#1DB954] tracking-widest uppercase">Welcome to Paradise</span>
             </motion.div>
 
             <motion.h2
@@ -76,7 +76,7 @@ export function About({ images }: AboutProps) {
               transition={{ duration: 0.3, delay: 0.15 }}
               className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
             >
-              <span className="bg-gradient-to-r from-white to-[#FFD479] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent">
                 No.1 Padel Club
               </span>
               <br />
@@ -160,7 +160,7 @@ export function About({ images }: AboutProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-transparent" />
               
                 <motion.div
-                className="absolute top-6 right-6 bg-gradient-to-br from-[#00BFA6] to-[#FFD479] px-6 py-3 rounded-full"
+                className="absolute top-6 right-6 bg-[#1DB954] px-6 py-3 rounded-full"
                   animate={prefersReducedMotion ? undefined : { y: [0, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               >
@@ -178,8 +178,8 @@ export function About({ images }: AboutProps) {
                     {images.map((_, index) => (
                     <motion.div
                         key={index}
-                        className={`h-1 rounded-full flex-1 ${
-                          currentImage === index ? 'bg-[#00BFA6]' : 'bg-white/30'
+                          className={`h-1 rounded-full flex-1 ${
+                            currentImage === index ? 'bg-[#1DB954]' : 'bg-white/30'
                         }`}
                         layoutId={`indicator-${index}`}
                       />
@@ -190,8 +190,8 @@ export function About({ images }: AboutProps) {
               </div>
             </div>
 
-              <motion.div
-              className="absolute -z-10 inset-0 bg-gradient-to-br from-[#00BFA6]/20 to-[#FFD479]/20 rounded-3xl blur-2xl"
+                <motion.div
+                className="absolute -z-10 inset-0 bg-gradient-to-br from-[#1DB954]/20 to-[#1DB954]/5 rounded-3xl blur-2xl"
                 animate={
                   prefersReducedMotion
                     ? undefined
