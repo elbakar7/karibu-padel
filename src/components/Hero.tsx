@@ -79,25 +79,9 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="block mb-2 bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent"
+                  className="block bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent"
                 >
-                  Play.
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                  className="block mb-2 bg-gradient-to-r from-[#00BFA6] via-[#FFD479] to-white bg-clip-text text-transparent"
-                >
-                  Connect.
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
-                  className="block bg-gradient-to-r from-[#FFD479] via-[#FF6B5A] to-[#00BFA6] bg-clip-text text-transparent"
-                >
-                  Experience Zanzibar.
+                  Karibu Padel Club
                 </motion.span>
               </h1>
             </motion.div>
