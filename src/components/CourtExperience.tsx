@@ -20,30 +20,30 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.1]);
 
   const features = [
-    {
-      icon: Sunrise,
-      title: 'Oceanfront View',
-      description: 'Play with the Indian Ocean as your backdrop',
-      color: 'from-[#FFD479] to-[#FF6B5A]',
-    },
-    {
-      icon: Globe,
-      title: 'Professional Turf',
-      description: 'World-class playing surface for optimal performance',
-      color: 'from-[#00BFA6] to-[#FFD479]',
-    },
-    {
-      icon: Moon,
-      title: 'Night Matches',
-      description: 'Premium lighting for unforgettable evening games',
-      color: 'from-[#002B5B] to-[#00BFA6]',
-    },
-    {
-      icon: Wine,
-      title: 'VIP Lounge',
-      description: 'Relax in style with ocean-view refreshments',
-      color: 'from-[#FF6B5A] to-[#FFD479]',
-    },
+      {
+        icon: Sunrise,
+        title: 'Oceanfront View',
+        description: 'Play with the Indian Ocean as your backdrop',
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Globe,
+        title: 'Professional Turf',
+        description: 'World-class playing surface for optimal performance',
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Moon,
+        title: 'Night Matches',
+        description: 'Premium lighting for unforgettable evening games',
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
+      {
+        icon: Wine,
+        title: 'VIP Lounge',
+        description: 'Relax in style with ocean-view refreshments',
+        color: 'from-[#1DB954] to-[#1DB954]/80',
+      },
   ];
 
   return (
@@ -76,7 +76,7 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-[#00BFA6] tracking-widest uppercase mb-4 block"
+            className="text-[#1DB954] tracking-widest uppercase mb-4 block"
           >
             Premium Facilities
           </motion.span>
@@ -86,7 +86,7 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
           >
-            <span className="bg-gradient-to-r from-white via-[#00BFA6] to-[#FFD479] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent">
               The Court Experience
             </span>
           </motion.h2>
@@ -164,8 +164,8 @@ export function CourtExperience({ courtImage }: CourtExperienceProps) {
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                 >
-                  <motion.div
-                    className="text-3xl md:text-4xl bg-gradient-to-r from-[#00BFA6] to-[#FFD479] bg-clip-text text-transparent mb-2"
+                    <motion.div
+                      className="text-3xl md:text-4xl bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent mb-2"
                     whileHover={{ scale: 1.1 }}
                   >
                     {stat.value}

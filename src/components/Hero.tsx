@@ -74,12 +74,12 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-8"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight">
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="block bg-gradient-to-r from-white via-[#FFD479] to-[#00BFA6] bg-clip-text text-transparent"
+                    className="block bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent"
                 >
                   Karibu Padel Club
                 </motion.span>
@@ -102,10 +102,10 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
               transition={{ duration: 0.4, delay: 0.7 }}
               whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
-              className="inline-block px-10 md:px-12 py-3 md:py-4 bg-gradient-to-r from-[#00BFA6] to-[#FFD479] rounded-full text-[#002B5B] relative overflow-hidden group shadow-lg hover:shadow-[0_0_40px_rgba(0,191,166,0.5)] transition-shadow"
+                className="inline-block px-10 md:px-12 py-3 md:py-4 bg-[#1DB954] rounded-full text-[#002B5B] relative overflow-hidden group shadow-lg hover:shadow-[0_0_40px_rgba(29,185,84,0.5)] transition-shadow"
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#FFD479] to-[#FF6B5A]"
+                  className="absolute inset-0 bg-[#1DB954]/90"
                 initial={{ x: prefersReducedMotion ? 0 : '-100%' }}
                 whileHover={prefersReducedMotion ? undefined : { x: 0 }}
                 transition={{ duration: 0.3 }}

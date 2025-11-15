@@ -92,7 +92,7 @@ Looking forward to playing!`;
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-white/80 flex items-center gap-2">
-                      <User size={16} className="text-[#00BFA6]" />
+                      <User size={16} className="text-[#1DB954]" />
                       Full Name
                     </Label>
                     <Input
@@ -110,7 +110,7 @@ Looking forward to playing!`;
 
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-white/80 flex items-center gap-2">
-                      <Mail size={16} className="text-[#00BFA6]" />
+                      <Mail size={16} className="text-[#1DB954]" />
                       Email
                     </Label>
                     <Input
@@ -128,7 +128,7 @@ Looking forward to playing!`;
 
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-white/80 flex items-center gap-2">
-                      <Phone size={16} className="text-[#00BFA6]" />
+                      <Phone size={16} className="text-[#1DB954]" />
                       Phone Number
                     </Label>
                     <Input
@@ -147,7 +147,7 @@ Looking forward to playing!`;
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="date" className="text-white/80 flex items-center gap-2">
-                        <Calendar size={16} className="text-[#00BFA6]" />
+                        <Calendar size={16} className="text-[#1DB954]" />
                         Date
                       </Label>
                       <Input
@@ -163,7 +163,7 @@ Looking forward to playing!`;
 
                     <div className="space-y-2">
                       <Label htmlFor="time" className="text-white/80 flex items-center gap-2">
-                        <Clock size={16} className="text-[#00BFA6]" />
+                        <Clock size={16} className="text-[#1DB954]" />
                         Time
                       </Label>
                       <Input
@@ -180,7 +180,7 @@ Looking forward to playing!`;
 
                   <div className="space-y-2">
                     <Label htmlFor="players" className="text-white/80 flex items-center gap-2">
-                      <Users size={16} className="text-[#00BFA6]" />
+                      <Users size={16} className="text-[#1DB954]" />
                       Number of Players
                     </Label>
                     <select
@@ -201,7 +201,7 @@ Looking forward to playing!`;
                     type="submit"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-[#00BFA6] to-[#FFD479] rounded-full text-[#002B5B] relative overflow-hidden group"
+                    className="w-full mt-6 px-6 py-3 bg-[#1DB954] rounded-full text-[#002B5B] relative overflow-hidden group"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">

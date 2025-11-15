@@ -64,11 +64,11 @@ export function Navigation({ onBookingClick }: NavigationProps) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="text-white/80 hover:text-[#00BFA6] transition-colors duration-200 relative group"
+                  className="text-white/80 hover:text-[#1DB954] transition-colors duration-200 relative group"
               >
                 {item}
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00BFA6] to-[#FFD479]"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#1DB954]"
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.2 }}
@@ -82,11 +82,11 @@ export function Navigation({ onBookingClick }: NavigationProps) {
               transition={{ duration: 0.3, delay: 0.3 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-2.5 bg-gradient-to-r from-[#00BFA6] to-[#FFD479] rounded-full text-[#002B5B] relative overflow-hidden group"
+                className="px-6 py-2.5 bg-[#1DB954] rounded-full text-[#002B5B] relative overflow-hidden group"
             >
               <span className="relative z-10">Book Now</span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#FFD479] to-[#FF6B5A]"
+                  className="absolute inset-0 bg-[#1DB954]/90"
                 initial={{ x: '100%' }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.2 }}
@@ -122,7 +122,7 @@ export function Navigation({ onBookingClick }: NavigationProps) {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsOpen(false)}
-                className="block text-white/80 hover:text-[#00BFA6] transition-colors py-2"
+                  className="block text-white/80 hover:text-[#1DB954] transition-colors py-2"
               >
                 {item}
               </a>
