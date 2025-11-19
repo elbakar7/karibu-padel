@@ -80,14 +80,14 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
         plugins={[plugin()]}
         className="absolute inset-0"
       >
-        <CarouselContent className="ml-0">
+        <CarouselContent className="ml-0 h-full">
           {images.map((image, index) => (
-            <CarouselItem key={index} className="pl-0">
+            <CarouselItem key={index} className="pl-0 h-full relative">
               <motion.div
                 style={
                   prefersReducedMotion ? undefined : { opacity, scale, willChange: 'transform, opacity' }
                 }
-                className="absolute inset-0"
+                className="relative w-full h-full"
                 aria-hidden="true"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
