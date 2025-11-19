@@ -10,7 +10,7 @@ import heroWebp1024 from '../assets/generated/hero/hero-1024.webp';
 import heroWebp1440 from '../assets/generated/hero/hero-1440.webp';
 import heroWebp1920 from '../assets/generated/hero/hero-1920.webp';
 import heroFallback from '../assets/generated/hero/hero-1920.jpg';
-import heroImage from '../../IMG_3117.JPG';
+import heroImage from '../assets/originals/gallery/IMG_3051.jpg';
 import heroSlide1 from '../assets/originals/hero-carousel/slide1.jpg';
 import heroSlide2 from '../assets/originals/hero-carousel/slide2.jpg';
 import heroSlide3 from '../assets/originals/hero-carousel/slide3.jpg';
@@ -21,6 +21,17 @@ import galleryPadel2 from '../assets/originals/gallery/padel2.jpg';
 import galleryPexels1 from '../assets/originals/gallery/pexels-criticalimagery-32896996.jpg';
 import galleryPexels2 from '../assets/originals/gallery/pexels-lluis-aragones-968548-4536850.jpg';
 import galleryPexels3 from '../assets/originals/gallery/pexels-roger-aribau-gisbert-19420784-8485104.jpg';
+
+// New gallery images
+import galleryImage19 from '../assets/originals/gallery/image00019.jpg';
+import galleryImage28 from '../assets/originals/gallery/image00028.jpg';
+import galleryImage60 from '../assets/originals/gallery/image00060.jpg';
+import galleryImage97 from '../assets/originals/gallery/image00097.jpg';
+import galleryImage109 from '../assets/originals/gallery/image00109.jpg';
+import galleryImage126 from '../assets/originals/gallery/image00126.jpg';
+import galleryImage3051 from '../assets/originals/gallery/IMG_3051.jpg';
+import galleryImage4458 from '../assets/originals/gallery/IMG_4458.jpg';
+import galleryImage4462 from '../assets/originals/gallery/IMG_4462.jpg';
 
 import courtsideAvif560 from '../assets/generated/courtside/courtside-560.avif';
 import courtsideAvif896 from '../assets/generated/courtside/courtside-896.avif';
@@ -245,6 +256,97 @@ export const galleryPexelsAction3: PictureAsset = {
     src: galleryPexels3,
     width: 1200,
     height: 800,
+  },
+  placeholder: loungePlaceholder,
+};
+
+// New gallery images
+export const galleryImage00019: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage19,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImage00028: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage28,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImage00060: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage60,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: loungePlaceholder,
+};
+
+export const galleryImage00097: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage97,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImage00109: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage109,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: loungePlaceholder,
+};
+
+export const galleryImage00126: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage126,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImageIMG3051: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage3051,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: loungePlaceholder,
+};
+
+export const galleryImageIMG4458: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage4458,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImageIMG4462: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage4462,
+    width: 1200,
+    height: 900,
   },
   placeholder: loungePlaceholder,
 };

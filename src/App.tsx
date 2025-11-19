@@ -24,6 +24,13 @@ import {
   galleryPexelsAction1,
   galleryPexelsAction2,
   galleryPexelsAction3,
+  galleryImage00019,
+  galleryImage00028,
+  galleryImage00060,
+  galleryImage00097,
+  galleryImage00109,
+  galleryImage00126,
+  galleryImageIMG3051,
 } from './media/images';
 
 export default function App() {
@@ -33,11 +40,17 @@ export default function App() {
   const heroCarouselImages = [heroCarouselSlide1, heroCarouselSlide2, heroCarouselSlide3];
   
   // Updated with new images
-  const aboutImages = [courtsidePicture, galleryPadelCourt1, loungePicture];
-  const eventImages = [galleryPexelsAction1, galleryPexelsAction2, galleryPexelsAction3, courtsidePicture];
+  const aboutImages = [galleryImage00060, galleryImage00109, galleryImageIMG3051];
+  const eventImages = [galleryPexelsAction1, galleryImage00028, galleryImage00097, galleryImage00126];
   const galleryImages = [
     courtsidePicture,
-    heroPicture,
+    galleryImage00019,
+    galleryImage00028,
+    galleryImage00060,
+    galleryImage00097,
+    galleryImage00109,
+    galleryImage00126,
+    galleryImageIMG3051,
     galleryPadelCourt1,
     galleryPadelCourt2,
     galleryPexelsAction1,
