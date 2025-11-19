@@ -39,12 +39,12 @@ export function Contact({ backgroundImage }: ContactProps) {
   ];
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center"
-      aria-labelledby="contact-heading"
-    >
+      <section
+        id="contact"
+        ref={ref}
+        className="relative py-20 md:py-32 overflow-hidden min-h-screen flex flex-col"
+        aria-labelledby="contact-heading"
+      >
       <div className="absolute inset-0 z-0">
         <ResponsivePicture
           image={backgroundImage}
@@ -87,7 +87,7 @@ export function Contact({ backgroundImage }: ContactProps) {
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 pb-16 md:pb-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -229,12 +229,12 @@ export function Contact({ backgroundImage }: ContactProps) {
       </div>
 
         <motion.div
-          className="absolute bottom-0 left-0 right-0 py-6 md:py-8 border-t border-white/10 bg-[#002B5B]/50 backdrop-blur-sm z-10"
+          className="relative z-10 mt-8 md:mt-12 border-t border-white/10 bg-[#002B5B]/60 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.4, delay: 1 }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex flex-col md:flex-row items-center gap-2 text-center md:text-left">
                 <p className="text-white/50 text-xs md:text-sm">© 2025 Karibu Padel. All rights reserved.</p>
