@@ -11,7 +11,7 @@ interface GalleryProps {
 
 export function Gallery({ images }: GalleryProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -42,7 +42,7 @@ export function Gallery({ images }: GalleryProps) {
   };
 
   return (
-    <section id="gallery" ref={ref} className="relative py-20 md:py-32 bg-gradient-to-b from-[#002B5B] via-[#001a3d] to-[#002B5B] overflow-hidden">
+    <section id="gallery" ref={ref} className="relative py-12 sm:py-20 md:py-32 bg-gradient-to-b from-[#002B5B] via-[#001a3d] to-[#002B5B] overflow-hidden">
       {/* Animated background elements */}
       <motion.div
         className="absolute top-20 left-10 w-[600px] h-[600px] bg-[#00BFA6]/5 rounded-full blur-3xl"
@@ -69,13 +69,13 @@ export function Gallery({ images }: GalleryProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-20"
+          className="text-center mb-8 sm:mb-12 md:mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-6"
+            className="inline-flex items-center gap-2 mb-4 sm:mb-6"
           >
             <Grid3x3 className="w-5 h-5 text-[#00BFA6]" />
             <span className="text-[#00BFA6] tracking-[0.3em] uppercase text-sm font-medium">
@@ -87,7 +87,7 @@ export function Gallery({ images }: GalleryProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6"
           >
             Our{' '}
             <span className="relative inline-block">
@@ -107,7 +107,7 @@ export function Gallery({ images }: GalleryProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-8"
+            className="text-white/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 px-4"
           >
             Experience the energy, passion, and community that makes Karibu Padel Club extraordinary
           </motion.p>
@@ -130,18 +130,18 @@ export function Gallery({ images }: GalleryProps) {
         {/* Gallery Grid */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[280px] gap-4 md:gap-6"
+          animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[240px] sm:auto-rows-[280px] gap-3 sm:gap-4 md:gap-6"
         >
           {images.map((image, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.5, y: 10 }}
               transition={{ 
-                duration: 0.6, 
-                delay: 0.1 * (index % 6),
+                duration: 0.5, 
+                delay: 0.05 * (index % 6),
                 ease: [0.25, 0.4, 0.25, 1]
               }}
               className={`relative group cursor-pointer ${getGridItemClass(index)}`}
@@ -228,10 +228,10 @@ export function Gallery({ images }: GalleryProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center mt-16 md:mt-24"
+          className="text-center mt-12 sm:mt-16 md:mt-24"
         >
           <motion.div
-            className="inline-flex flex-col sm:flex-row items-center gap-6 px-8 py-6 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-3xl"
+            className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 sm:px-8 py-5 sm:py-6 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-3xl mx-4"
             whileHover={{ scale: 1.02, borderColor: 'rgba(255, 255, 255, 0.2)' }}
             transition={{ duration: 0.3 }}
           >
