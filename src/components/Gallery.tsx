@@ -101,15 +101,19 @@ export function Gallery({ images }: GalleryProps) {
           transition={{ duration: 1, delay: 0.6 }}
         >
           <div ref={scrollRef} className="overflow-x-auto scrollbar-hide pb-8">
-            <motion.div
-              className="flex gap-6"
-              drag={maxDragOffset > 0 ? 'x' : false}
-              dragConstraints={{ left: -maxDragOffset, right: 0 }}
-              dragElastic={0.1}
-              dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-              style={{ cursor: 'grab', willChange: 'transform' }}
-              whileTap={{ cursor: 'grabbing' }}
-            >
+              <motion.div
+                className="flex gap-6"
+                drag={maxDragOffset > 0 ? 'x' : false}
+                dragConstraints={maxDragOffset > 0 ? { left: -maxDragOffset, right: 0 } : undefined}
+                dragElastic={0.1}
+                dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
+                style={{
+                  cursor: maxDragOffset > 0 ? 'grab' : 'default',
+                  willChange: maxDragOffset > 0 ? 'transform' : undefined,
+                  touchAction: maxDragOffset > 0 ? 'pan-y' : 'auto',
+                }}
+                whileTap={maxDragOffset > 0 ? { cursor: 'grabbing' } : undefined}
+              >
               {images.map((image, index) => (
                 <motion.div
                   key={index}
