@@ -1,5 +1,6 @@
+import useEmblaCarousel from 'embla-carousel-react';
 import { motion, useInView } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
@@ -11,91 +12,56 @@ interface GalleryProps {
 export function Gallery({ images }: GalleryProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [maxDragOffset, setMaxDragOffset] = useState(0);
-  const [isAtStart, setIsAtStart] = useState(true);
-  const [isAtEnd, setIsAtEnd] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    containScroll: 'trimSnaps',
+    dragFree: false,
+    skipSnaps: false,
+    slidesToScroll: 1,
+    speed: 25,
+  });
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(images.length > 1);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (!emblaApi) {
       return;
     }
-
-    const updateDragLimit = () => {
-      const container = scrollRef.current;
-      if (!container) {
-        return;
-      }
-
-      const extraWidth = container.scrollWidth - container.clientWidth;
-      setMaxDragOffset(Math.max(0, extraWidth));
-    };
-
-    updateDragLimit();
-    window.addEventListener('resize', updateDragLimit);
-
-    let resizeObserver: ResizeObserver | null = null;
-    if (typeof ResizeObserver !== 'undefined' && scrollRef.current) {
-      resizeObserver = new ResizeObserver(updateDragLimit);
-      resizeObserver.observe(scrollRef.current);
-    }
-
-    return () => {
-      window.removeEventListener('resize', updateDragLimit);
-      resizeObserver?.disconnect();
-    };
-  }, [images.length]);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) {
-      return;
-    }
-
-    let animationFrame: number | null = null;
 
     const updateNavState = () => {
-      animationFrame = null;
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-      setIsAtStart(scrollLeft <= 12);
-      setIsAtEnd(scrollLeft >= scrollWidth - clientWidth - 12);
-    };
-
-    const handleScroll = () => {
-      if (animationFrame !== null) {
-        return;
-      }
-      animationFrame = window.requestAnimationFrame(updateNavState);
+      setCanScrollPrev(emblaApi.canScrollPrev());
+      setCanScrollNext(emblaApi.canScrollNext());
     };
 
     updateNavState();
-    container.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', updateNavState);
+    emblaApi.on('select', updateNavState);
+    emblaApi.on('reInit', updateNavState);
 
     return () => {
-      if (animationFrame !== null) {
-        window.cancelAnimationFrame(animationFrame);
-      }
-      container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateNavState);
+      emblaApi.off('select', updateNavState);
+      emblaApi.off('reInit', updateNavState);
     };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    setCanScrollNext(images.length > 1);
   }, [images.length]);
 
-  const handleNavigation = (direction: 'next' | 'prev') => {
-    const container = scrollRef.current;
-    if (!container) {
-      return;
-    }
+  const handleNavigation = useCallback(
+    (direction: 'next' | 'prev') => {
+      if (!emblaApi) {
+        return;
+      }
 
-    const scrollAmount = container.clientWidth * 0.9;
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    const nextPosition =
-      direction === 'next'
-        ? Math.min(container.scrollLeft + scrollAmount, maxScrollLeft)
-        : Math.max(container.scrollLeft - scrollAmount, 0);
+      if (direction === 'next') {
+        emblaApi.scrollNext();
+        return;
+      }
 
-    container.scrollTo({ left: nextPosition, behavior: 'smooth' });
-  };
+      emblaApi.scrollPrev();
+    },
+    [emblaApi],
+  );
 
   return (
     <section id="gallery" ref={ref} className="relative py-32 bg-[#002B5B] overflow-hidden">
@@ -133,20 +99,20 @@ export function Gallery({ images }: GalleryProps) {
               Gallery
             </span>
           </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="inline-block"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="inline-block"
+          >
+            <motion.p
+              className="text-white/70 px-8 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full"
+              whileHover={{ scale: 1.05 }}
             >
-              <motion.p
-                className="text-white/70 px-8 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full"
-                whileHover={{ scale: 1.05 }}
-              >
-                #KaribuPadelMoments
-              </motion.p>
-            </motion.div>
+              #KaribuPadelMoments
+            </motion.p>
           </motion.div>
+        </motion.div>
 
           <motion.div
             className="relative"
@@ -154,20 +120,11 @@ export function Gallery({ images }: GalleryProps) {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <div ref={scrollRef} className="overflow-x-auto scrollbar-hide pb-8">
-              <motion.div
-                className="flex gap-6"
-                drag={maxDragOffset > 0 ? 'x' : false}
-                dragConstraints={maxDragOffset > 0 ? { left: -maxDragOffset, right: 0 } : undefined}
-                dragElastic={0.1}
-                dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-                style={{
-                  cursor: maxDragOffset > 0 ? 'grab' : 'default',
-                  willChange: maxDragOffset > 0 ? 'transform' : undefined,
-                  touchAction: maxDragOffset > 0 ? 'pan-y' : 'auto',
-                }}
-                whileTap={maxDragOffset > 0 ? { cursor: 'grabbing' } : undefined}
-              >
+            <div
+              ref={emblaRef}
+              className="overflow-hidden pb-8 cursor-grab active:cursor-grabbing touch-pan-y"
+            >
+              <motion.div className="flex gap-6 will-change-transform">
                 {images.map((image, index) => (
                   <motion.div
                     key={index}
@@ -175,7 +132,7 @@ export function Gallery({ images }: GalleryProps) {
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     whileHover={{ y: -15, scale: 1.03 }}
-                    className="relative flex-shrink-0 w-[400px] h-[500px] group"
+                    className="relative flex-shrink-0 w-[80vw] max-w-[420px] h-[420px] sm:w-[360px] sm:h-[480px] lg:w-[400px] lg:h-[520px] group"
                   >
                     <div className="relative h-full rounded-3xl overflow-hidden">
                       <ResponsivePicture
@@ -233,32 +190,32 @@ export function Gallery({ images }: GalleryProps) {
               </motion.div>
             </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 w-32 h-full bg-gradient-to-r from-[#002B5B] to-transparent pointer-events-none" />
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 w-32 h-full bg-gradient-to-l from-[#002B5B] to-transparent pointer-events-none" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-32 bg-gradient-to-r from-[#002B5B] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-32 bg-gradient-to-l from-[#002B5B] to-transparent" />
 
-            {maxDragOffset > 0 && (
-              <>
+            {images.length > 1 && (
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 sm:px-4">
                 <button
                   type="button"
                   onClick={() => handleNavigation('prev')}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md flex items-center justify-center transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-40 disabled:hover:bg-white/10"
+                  className="pointer-events-auto z-20 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md flex items-center justify-center transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-40 disabled:hover:bg-white/10"
                   aria-label="Show previous gallery items"
-                  disabled={isAtStart}
+                  disabled={!canScrollPrev}
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   type="button"
                   onClick={() => handleNavigation('next')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md flex items-center justify-center transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-40 disabled:hover:bg-white/10"
+                  className="pointer-events-auto z-20 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md flex items-center justify-center transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-40 disabled:hover:bg-white/10"
                   aria-label="Show next gallery items"
-                  disabled={isAtEnd}
+                  disabled={!canScrollNext}
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
-              </>
+              </div>
             )}
-        </motion.div>
+          </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -291,15 +248,6 @@ export function Gallery({ images }: GalleryProps) {
         </motion.div>
       </div>
 
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }
