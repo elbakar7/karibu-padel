@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
+import { ImageLightbox } from './ImageLightbox';
   
 interface GalleryProps {
   images: PictureAsset[];
@@ -22,6 +23,8 @@ export function Gallery({ images }: GalleryProps) {
   });
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(images.length > 1);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     if (!emblaApi) {
@@ -62,6 +65,19 @@ export function Gallery({ images }: GalleryProps) {
     },
     [emblaApi],
   );
+
+  const handleImageClick = useCallback((index: number) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  }, []);
+
+  const handleCloseLightbox = useCallback(() => {
+    setLightboxOpen(false);
+  }, []);
+
+  const handleLightboxNavigate = useCallback((index: number) => {
+    setSelectedImageIndex(index);
+  }, []);
 
   return (
     <section id="gallery" ref={ref} className="relative py-32 bg-[#002B5B] overflow-hidden">
@@ -132,7 +148,8 @@ export function Gallery({ images }: GalleryProps) {
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     whileHover={{ y: -15, scale: 1.03 }}
-                    className="relative flex-shrink-0 w-[80vw] max-w-[420px] h-[420px] sm:w-[360px] sm:h-[480px] lg:w-[400px] lg:h-[520px] group"
+                    onClick={() => handleImageClick(index)}
+                    className="relative flex-shrink-0 w-[80vw] max-w-[420px] h-[420px] sm:w-[360px] sm:h-[480px] lg:w-[400px] lg:h-[520px] group cursor-pointer"
                   >
                     <div className="relative h-full rounded-3xl overflow-hidden">
                       <ResponsivePicture
@@ -248,6 +265,13 @@ export function Gallery({ images }: GalleryProps) {
         </motion.div>
       </div>
 
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        images={images}
+        currentIndex={selectedImageIndex}
+        onClose={handleCloseLightbox}
+        onNavigate={handleLightboxNavigate}
+      />
     </section>
   );
 }
