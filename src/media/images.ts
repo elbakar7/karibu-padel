@@ -11,6 +11,16 @@ import heroWebp1440 from '../assets/generated/hero/hero-1440.webp';
 import heroWebp1920 from '../assets/generated/hero/hero-1920.webp';
 import heroFallback from '../assets/generated/hero/hero-1920.jpg';
 import heroImage from '../../IMG_3117.JPG';
+import heroSlide1 from '../assets/originals/hero-carousel/slide1.jpg';
+import heroSlide2 from '../assets/originals/hero-carousel/slide2.jpg';
+import heroSlide3 from '../assets/originals/hero-carousel/slide3.jpg';
+
+// Gallery images
+import galleryPadel1 from '../assets/originals/gallery/padel1.jpg';
+import galleryPadel2 from '../assets/originals/gallery/padel2.jpg';
+import galleryPexels1 from '../assets/originals/gallery/pexels-criticalimagery-32896996.jpg';
+import galleryPexels2 from '../assets/originals/gallery/pexels-lluis-aragones-968548-4536850.jpg';
+import galleryPexels3 from '../assets/originals/gallery/pexels-roger-aribau-gisbert-19420784-8485104.jpg';
 
 import courtsideAvif560 from '../assets/generated/courtside/courtside-560.avif';
 import courtsideAvif896 from '../assets/generated/courtside/courtside-896.avif';
@@ -72,6 +82,37 @@ export const heroPicture: PictureAsset = {
     src: heroFallback,
     width: HERO_MAX_WIDTH,
     height: roundHeight(HERO_MAX_WIDTH, HERO_ASPECT_RATIO),
+  },
+  placeholder: heroPlaceholder,
+};
+
+// Hero carousel images - using originals for now
+export const heroCarouselSlide1: PictureAsset = {
+  sources: [],
+  img: {
+    src: heroSlide1,
+    width: 1920,
+    height: 1280,
+  },
+  placeholder: heroPlaceholder,
+};
+
+export const heroCarouselSlide2: PictureAsset = {
+  sources: [],
+  img: {
+    src: heroSlide2,
+    width: 1920,
+    height: 1280,
+  },
+  placeholder: heroPlaceholder,
+};
+
+export const heroCarouselSlide3: PictureAsset = {
+  sources: [],
+  img: {
+    src: heroSlide3,
+    width: 1920,
+    height: 1280,
   },
   placeholder: heroPlaceholder,
 };
@@ -155,6 +196,57 @@ export const walkwayPicture: PictureAsset = {
     height: roundHeight(1400, 0.666667),
   },
   placeholder: walkwayPlaceholder,
+};
+
+// New gallery images
+export const galleryPadelCourt1: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryPadel1,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryPadelCourt2: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryPadel2,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryPexelsAction1: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryPexels1,
+    width: 1200,
+    height: 800,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryPexelsAction2: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryPexels2,
+    width: 1200,
+    height: 800,
+  },
+  placeholder: loungePlaceholder,
+};
+
+export const galleryPexelsAction3: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryPexels3,
+    width: 1200,
+    height: 800,
+  },
+  placeholder: loungePlaceholder,
 };
 
 export const defaultOgImageUrl = heroImage;
