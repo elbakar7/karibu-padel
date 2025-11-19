@@ -17,6 +17,7 @@ export default defineConfig({
       'lucide-react@0.487.0': 'lucide-react',
       'input-otp@1.4.2': 'input-otp',
       'embla-carousel-react@8.6.0': 'embla-carousel-react',
+      'embla-carousel-autoplay@8.6.0': 'embla-carousel-autoplay',
       'cmdk@1.1.1': 'cmdk',
       'class-variance-authority@0.7.1': 'class-variance-authority',
       '@radix-ui/react-tooltip@1.1.8': '@radix-ui/react-tooltip',
