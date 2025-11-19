@@ -1,5 +1,5 @@
 import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
   
@@ -11,6 +11,37 @@ export function Gallery({ images }: GalleryProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [maxDragOffset, setMaxDragOffset] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const updateDragLimit = () => {
+      const container = scrollRef.current;
+      if (!container) {
+        return;
+      }
+
+      const extraWidth = container.scrollWidth - container.clientWidth;
+      setMaxDragOffset(Math.max(0, extraWidth));
+    };
+
+    updateDragLimit();
+    window.addEventListener('resize', updateDragLimit);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && scrollRef.current) {
+      resizeObserver = new ResizeObserver(updateDragLimit);
+      resizeObserver.observe(scrollRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateDragLimit);
+      resizeObserver?.disconnect();
+    };
+  }, [images.length]);
 
   return (
     <section id="gallery" ref={ref} className="relative py-32 bg-[#002B5B] overflow-hidden">
@@ -64,17 +95,16 @@ export function Gallery({ images }: GalleryProps) {
         </motion.div>
 
         <motion.div
-          ref={scrollRef}
           className="relative"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <div className="overflow-x-auto scrollbar-hide pb-8">
+          <div ref={scrollRef} className="overflow-x-auto scrollbar-hide pb-8">
             <motion.div
               className="flex gap-6"
-              drag="x"
-              dragConstraints={scrollRef}
+              drag={maxDragOffset > 0 ? 'x' : false}
+              dragConstraints={{ left: -maxDragOffset, right: 0 }}
               dragElastic={0.1}
               dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
               style={{ cursor: 'grab', willChange: 'transform' }}
