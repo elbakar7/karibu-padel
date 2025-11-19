@@ -52,31 +52,31 @@ export function ImageLightbox({
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
           onClick={onClose}
         >
-          {/* Close button */}
+          {/* Close button - Top Right */}
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.1 }}
             onClick={onClose}
-            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-colors"
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
             aria-label="Close lightbox"
           >
-            <X size={24} />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </motion.button>
 
-          {/* Image counter */}
+          {/* Image counter - Top Center */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ delay: 0.1 }}
-            className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white"
+            className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm sm:text-base font-medium shadow-lg"
           >
             {currentIndex + 1} / {images.length}
           </motion.div>
 
-          {/* Previous button */}
+          {/* Previous button - Left Center */}
           {currentIndex > 0 && (
             <motion.button
               initial={{ opacity: 0, x: -20 }}
@@ -87,14 +87,14 @@ export function ImageLightbox({
                 e.stopPropagation();
                 onNavigate(currentIndex - 1);
               }}
-              className="absolute left-4 z-50 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-colors"
+              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
               aria-label="Previous image"
             >
-              <ChevronLeft size={28} />
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
             </motion.button>
           )}
 
-          {/* Next button */}
+          {/* Next button - Right Center */}
           {currentIndex < images.length - 1 && (
             <motion.button
               initial={{ opacity: 0, x: 20 }}
@@ -105,10 +105,10 @@ export function ImageLightbox({
                 e.stopPropagation();
                 onNavigate(currentIndex + 1);
               }}
-              className="absolute right-4 z-50 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-colors"
+              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
               aria-label="Next image"
             >
-              <ChevronRight size={28} />
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
             </motion.button>
           )}
 
@@ -120,13 +120,13 @@ export function ImageLightbox({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center p-4"
+            className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center p-4 sm:p-8"
           >
             <ResponsivePicture
               image={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               pictureClassName="block max-w-full max-h-full"
-              imgClassName="max-w-full max-h-[90vh] object-contain rounded-lg"
+              imgClassName="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
               loading="eager"
               fetchPriority="high"
               sizes="90vw"
