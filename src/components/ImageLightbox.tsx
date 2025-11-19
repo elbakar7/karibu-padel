@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
+import type { MouseEvent as ReactMouseEvent } from 'react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
 
@@ -19,6 +20,31 @@ export function ImageLightbox({
   onClose,
   onNavigate,
 }: ImageLightboxProps) {
+  const isFirstImage = currentIndex === 0;
+  const isLastImage = currentIndex === images.length - 1;
+
+  const handlePrevClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (!isFirstImage) {
+      onNavigate(currentIndex - 1);
+    }
+  };
+
+  const handleNextClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (!isLastImage) {
+      onNavigate(currentIndex + 1);
+    }
+  };
+
+  const handleCloseClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    onClose();
+  };
+
+  const controlButtonClass =
+    'flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-full text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60';
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -52,65 +78,58 @@ export function ImageLightbox({
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
           onClick={onClose}
         >
-          {/* Close button - Top Right */}
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.1 }}
-            onClick={onClose}
-            className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
-            aria-label="Close lightbox"
-          >
-            <X className="w-5 h-5 sm:w-6 sm:h-6" />
-          </motion.button>
-
-          {/* Image counter - Top Center */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ delay: 0.1 }}
-            className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm sm:text-base font-medium shadow-lg"
-          >
-            {currentIndex + 1} / {images.length}
-          </motion.div>
-
-          {/* Previous button - Left Center */}
-          {currentIndex > 0 && (
-            <motion.button
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+            {/* Controls cluster - Top Center */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.1 }}
-              onClick={(e) => {
-                e.stopPropagation();
-                onNavigate(currentIndex - 1);
-              }}
-              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
-              aria-label="Previous image"
+              className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 text-white"
+              onClick={(event) => event.stopPropagation()}
             >
-              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-            </motion.button>
-          )}
+              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
+                <button
+                  type="button"
+                  onClick={handlePrevClick}
+                  disabled={isFirstImage}
+                  aria-label="Previous image"
+                  className={`${controlButtonClass} ${
+                    isFirstImage
+                      ? 'opacity-40 cursor-not-allowed'
+                      : 'hover:bg-white/20 hover:scale-110'
+                  }`}
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
 
-          {/* Next button - Right Center */}
-          {currentIndex < images.length - 1 && (
-            <motion.button
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ delay: 0.1 }}
-              onClick={(e) => {
-                e.stopPropagation();
-                onNavigate(currentIndex + 1);
-              }}
-              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-lg"
-              aria-label="Next image"
-            >
-              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-            </motion.button>
-          )}
+                <button
+                  type="button"
+                  onClick={handleCloseClick}
+                  aria-label="Close lightbox"
+                  className={`${controlButtonClass} hover:bg-white/20 hover:scale-110`}
+                >
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleNextClick}
+                  disabled={isLastImage}
+                  aria-label="Next image"
+                  className={`${controlButtonClass} ${
+                    isLastImage
+                      ? 'opacity-40 cursor-not-allowed'
+                      : 'hover:bg-white/20 hover:scale-110'
+                  }`}
+                >
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              </div>
+
+              <span className="text-xs sm:text-sm font-medium text-white/80">
+                {currentIndex + 1} / {images.length}
+              </span>
+            </motion.div>
 
           {/* Image */}
           <motion.div
