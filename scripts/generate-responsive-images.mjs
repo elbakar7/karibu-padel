@@ -12,6 +12,21 @@ const images = [
     widths: [640, 1024, 1440, 1920],
   },
   {
+    name: 'hero-carousel-slide1',
+    file: 'src/assets/originals/hero-carousel/slide1.jpg',
+    widths: [640, 1024, 1440, 1920],
+  },
+  {
+    name: 'hero-carousel-slide2',
+    file: 'src/assets/originals/hero-carousel/slide2.jpg',
+    widths: [640, 1024, 1440, 1920],
+  },
+  {
+    name: 'hero-carousel-slide3',
+    file: 'src/assets/originals/hero-carousel/slide3.jpg',
+    widths: [640, 1024, 1440, 1920],
+  },
+  {
     name: 'courtside',
     file: 'IMG_3051.JPG',
     widths: [560, 896, 1280],

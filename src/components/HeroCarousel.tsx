@@ -34,24 +34,39 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
   useEffect(() => {
     if (images.length === 0) return;
     
-    const selector = 'link[data-hero-preload="true"]';
-    let preloadLink = document.head.querySelector<HTMLLinkElement>(selector);
+    const preloadLinks: HTMLLinkElement[] = [];
 
-    if (!preloadLink) {
-      preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'image';
-      preloadLink.fetchPriority = 'high';
-      preloadLink.setAttribute('data-hero-preload', 'true');
-      document.head.appendChild(preloadLink);
-    }
+    // Preload all carousel images with appropriate priority
+    images.forEach((image, index) => {
+      const selector = `link[data-hero-preload="${index}"]`;
+      let preloadLink = document.head.querySelector<HTMLLinkElement>(selector);
 
-    preloadLink.href = images[0].img.src;
+      if (!preloadLink) {
+        preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'image';
+        preloadLink.fetchPriority = index === 0 ? 'high' : 'low';
+        preloadLink.setAttribute('data-hero-preload', String(index));
+        document.head.appendChild(preloadLink);
+      }
+
+      // Preload AVIF format for modern browsers (best compression)
+      if (image.sources.length > 0 && image.sources[0].type === 'image/avif') {
+        preloadLink.href = image.sources[0].srcSet.split(',')[0].trim().split(' ')[0];
+        preloadLink.type = 'image/avif';
+      } else {
+        preloadLink.href = image.img.src;
+      }
+
+      preloadLinks.push(preloadLink);
+    });
 
     return () => {
-      if (preloadLink?.parentElement) {
-        preloadLink.parentElement.removeChild(preloadLink);
-      }
+      preloadLinks.forEach((link) => {
+        if (link?.parentElement) {
+          link.parentElement.removeChild(link);
+        }
+      });
     };
   }, [images]);
 
@@ -81,8 +96,8 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
                   alt={`Karibu Padel Club - Slide ${index + 1}`}
                   pictureClassName="absolute inset-0 h-full w-full"
                   imgClassName="w-full h-full object-cover"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "low"}
+                  loading={index <= 1 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : index === 1 ? "auto" : "low"}
                   decoding="async"
                   sizes="100vw"
                 />

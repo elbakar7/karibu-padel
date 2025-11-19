@@ -11,9 +11,41 @@ import heroWebp1440 from '../assets/generated/hero/hero-1440.webp';
 import heroWebp1920 from '../assets/generated/hero/hero-1920.webp';
 import heroFallback from '../assets/generated/hero/hero-1920.jpg';
 import heroImage from '../assets/originals/gallery/IMG_3051.jpg';
-import heroSlide1 from '../assets/originals/hero-carousel/slide1.jpg';
-import heroSlide2 from '../assets/originals/hero-carousel/slide2.jpg';
-import heroSlide3 from '../assets/originals/hero-carousel/slide3.jpg';
+// Hero carousel slide 1
+import heroSlide1Avif640 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-640.avif';
+import heroSlide1Avif1024 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1024.avif';
+import heroSlide1Avif1440 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1440.avif';
+import heroSlide1Avif1920 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1920.avif';
+import heroSlide1Webp640 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-640.webp';
+import heroSlide1Webp1024 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1024.webp';
+import heroSlide1Webp1440 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1440.webp';
+import heroSlide1Webp1920 from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1920.webp';
+import heroSlide1Fallback from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-1920.jpg';
+import heroSlide1Placeholder from '../assets/generated/hero-carousel-slide1/hero-carousel-slide1-placeholder.webp';
+
+// Hero carousel slide 2
+import heroSlide2Avif640 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-640.avif';
+import heroSlide2Avif1024 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1024.avif';
+import heroSlide2Avif1440 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1440.avif';
+import heroSlide2Avif1920 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1920.avif';
+import heroSlide2Webp640 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-640.webp';
+import heroSlide2Webp1024 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1024.webp';
+import heroSlide2Webp1440 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1440.webp';
+import heroSlide2Webp1920 from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1920.webp';
+import heroSlide2Fallback from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-1920.jpg';
+import heroSlide2Placeholder from '../assets/generated/hero-carousel-slide2/hero-carousel-slide2-placeholder.webp';
+
+// Hero carousel slide 3
+import heroSlide3Avif640 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-640.avif';
+import heroSlide3Avif1024 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1024.avif';
+import heroSlide3Avif1440 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1440.avif';
+import heroSlide3Avif1920 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1920.avif';
+import heroSlide3Webp640 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-640.webp';
+import heroSlide3Webp1024 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1024.webp';
+import heroSlide3Webp1440 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1440.webp';
+import heroSlide3Webp1920 from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1920.webp';
+import heroSlide3Fallback from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-1920.jpg';
+import heroSlide3Placeholder from '../assets/generated/hero-carousel-slide3/hero-carousel-slide3-placeholder.webp';
 
 // Gallery images
 import galleryPadel1 from '../assets/originals/gallery/padel1.jpg';
@@ -97,35 +129,97 @@ export const heroPicture: PictureAsset = {
   placeholder: heroPlaceholder,
 };
 
-// Hero carousel images - using originals for now
+// Hero carousel images - optimized with responsive formats
+const HERO_CAROUSEL_MAX_WIDTH = 1920;
+const HERO_CAROUSEL_SLIDE1_ASPECT_RATIO = 0.666667;
+const HERO_CAROUSEL_SLIDE2_ASPECT_RATIO = 0.561836;
+const HERO_CAROUSEL_SLIDE3_ASPECT_RATIO = 0.666667;
+
 export const heroCarouselSlide1: PictureAsset = {
-  sources: [],
+  sources: [
+    {
+      type: 'image/avif',
+      srcSet: toSrcSet([
+        [heroSlide1Avif640, 640],
+        [heroSlide1Avif1024, 1024],
+        [heroSlide1Avif1440, 1440],
+        [heroSlide1Avif1920, 1920],
+      ]),
+    },
+    {
+      type: 'image/webp',
+      srcSet: toSrcSet([
+        [heroSlide1Webp640, 640],
+        [heroSlide1Webp1024, 1024],
+        [heroSlide1Webp1440, 1440],
+        [heroSlide1Webp1920, 1920],
+      ]),
+    },
+  ],
   img: {
-    src: heroSlide1,
-    width: 1920,
-    height: 1280,
+    src: heroSlide1Fallback,
+    width: HERO_CAROUSEL_MAX_WIDTH,
+    height: roundHeight(HERO_CAROUSEL_MAX_WIDTH, HERO_CAROUSEL_SLIDE1_ASPECT_RATIO),
   },
-  placeholder: heroPlaceholder,
+  placeholder: heroSlide1Placeholder,
 };
 
 export const heroCarouselSlide2: PictureAsset = {
-  sources: [],
+  sources: [
+    {
+      type: 'image/avif',
+      srcSet: toSrcSet([
+        [heroSlide2Avif640, 640],
+        [heroSlide2Avif1024, 1024],
+        [heroSlide2Avif1440, 1440],
+        [heroSlide2Avif1920, 1920],
+      ]),
+    },
+    {
+      type: 'image/webp',
+      srcSet: toSrcSet([
+        [heroSlide2Webp640, 640],
+        [heroSlide2Webp1024, 1024],
+        [heroSlide2Webp1440, 1440],
+        [heroSlide2Webp1920, 1920],
+      ]),
+    },
+  ],
   img: {
-    src: heroSlide2,
-    width: 1920,
-    height: 1280,
+    src: heroSlide2Fallback,
+    width: HERO_CAROUSEL_MAX_WIDTH,
+    height: roundHeight(HERO_CAROUSEL_MAX_WIDTH, HERO_CAROUSEL_SLIDE2_ASPECT_RATIO),
   },
-  placeholder: heroPlaceholder,
+  placeholder: heroSlide2Placeholder,
 };
 
 export const heroCarouselSlide3: PictureAsset = {
-  sources: [],
+  sources: [
+    {
+      type: 'image/avif',
+      srcSet: toSrcSet([
+        [heroSlide3Avif640, 640],
+        [heroSlide3Avif1024, 1024],
+        [heroSlide3Avif1440, 1440],
+        [heroSlide3Avif1920, 1920],
+      ]),
+    },
+    {
+      type: 'image/webp',
+      srcSet: toSrcSet([
+        [heroSlide3Webp640, 640],
+        [heroSlide3Webp1024, 1024],
+        [heroSlide3Webp1440, 1440],
+        [heroSlide3Webp1920, 1920],
+      ]),
+    },
+  ],
   img: {
-    src: heroSlide3,
-    width: 1920,
-    height: 1280,
+    src: heroSlide3Fallback,
+    width: HERO_CAROUSEL_MAX_WIDTH,
+    height: roundHeight(HERO_CAROUSEL_MAX_WIDTH, HERO_CAROUSEL_SLIDE3_ASPECT_RATIO),
   },
-  placeholder: heroPlaceholder,
+  placeholder: heroSlide3Placeholder,
 };
 
 export const courtsidePicture: PictureAsset = {
