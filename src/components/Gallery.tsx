@@ -248,7 +248,7 @@ export function Gallery({ images }: GalleryProps) {
             whileHover={{ scale: 1.02, borderColor: 'rgba(255, 255, 255, 0.2)' }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00BFA6] to-[#FFD479] flex items-center justify-center">
                 <Instagram className="w-6 h-6 text-white" />
               </div>
