@@ -33,23 +33,27 @@ export function Gallery({ images }: GalleryProps) {
     setSelectedImageIndex(index);
   }, []);
 
-  // Define modern bento-box layout patterns for visual interest
+  // Define modern bento-box layout patterns for visual interest with more variety
   const getGridItemClass = (index: number) => {
     const patterns = [
-      'col-span-1 row-span-1 md:col-span-2 md:row-span-2', // Featured Large
-      'col-span-1 row-span-1', // Standard
-      'col-span-1 row-span-1 md:col-span-1 md:row-span-2', // Tall Portrait
-      'col-span-1 row-span-1', // Standard
-      'col-span-1 row-span-1 md:col-span-2 md:row-span-1', // Wide Landscape
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-2', // Featured Large Square
       'col-span-1 row-span-1', // Standard
       'col-span-1 row-span-1 md:col-span-1 md:row-span-2', // Tall Portrait
       'col-span-1 row-span-1 md:col-span-2 md:row-span-1', // Wide Landscape
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-2', // Featured Large Square
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-1 md:row-span-2', // Tall Portrait
+      'col-span-1 row-span-1 md:col-span-3 md:row-span-1', // Extra Wide Landscape
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-1', // Wide Landscape
+      'col-span-1 row-span-1', // Standard
     ];
     return patterns[index % patterns.length];
   };
 
   return (
-    <section id="gallery" ref={ref} className="relative py-12 sm:py-20 md:py-32 bg-gradient-to-b from-[#002B5B] via-[#001a3d] to-[#002B5B] overflow-hidden">
+    <section id="gallery" ref={ref} className="relative py-12 sm:py-20 md:py-32 pb-16 sm:pb-24 md:pb-40 bg-gradient-to-b from-[#002B5B] via-[#001a3d] to-[#002B5B] overflow-hidden">
       {/* Animated background elements */}
       <motion.div
         className="absolute top-20 left-10 w-[600px] h-[600px] bg-[#00BFA6]/5 rounded-full blur-3xl"
@@ -139,7 +143,7 @@ export function Gallery({ images }: GalleryProps) {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[180px] sm:auto-rows-[220px] md:auto-rows-[260px] gap-2 sm:gap-3 md:gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] gap-3 sm:gap-4 md:gap-5"
         >
           {uniqueImages.map((image, index) => (
             <motion.div
