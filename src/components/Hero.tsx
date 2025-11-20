@@ -74,32 +74,40 @@ export function Hero({ backgroundImage, onBookingClick }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-8"
             >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight font-bold">
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                    className="block bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent"
+                    className="block bg-gradient-to-r from-white via-[#60D4F7] to-[#1DB954] bg-clip-text text-transparent drop-shadow-2xl"
                 >
-                  Karibu Padel Club
+                  Karibu Marine
                 </motion.span>
               </h1>
+              <motion.p
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="text-xl md:text-2xl lg:text-3xl text-white/95 font-light tracking-wide italic mt-4"
+              >
+                Your connection to the vast blue
+              </motion.p>
             </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/90 mb-8 md:mb-12 max-w-2xl mx-auto px-4"
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="text-base md:text-lg text-white/80 mb-8 md:mb-12 max-w-2xl mx-auto px-4"
           >
-            The No.1 Padel Court & Club in Zanzibar
+            Experience the beauty of Zanzibar's waters
           </motion.p>
 
             <motion.button
               onClick={onBookingClick}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.7 }}
+              transition={{ duration: 0.4, delay: 0.9 }}
               whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
                 className="inline-block px-10 md:px-12 py-3 md:py-4 bg-[#1DB954] rounded-full text-[#002B5B] relative overflow-hidden group shadow-lg hover:shadow-[0_0_40px_rgba(29,185,84,0.5)] transition-shadow"
