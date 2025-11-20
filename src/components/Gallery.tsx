@@ -241,7 +241,7 @@ export function Gallery({ images }: GalleryProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center mt-12 sm:mt-16 md:mt-24"
+          className="text-center mt-20 sm:mt-28 md:mt-40"
         >
           <motion.div
             className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 sm:px-8 py-5 sm:py-6 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-3xl mx-4"
