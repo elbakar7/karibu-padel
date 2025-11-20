@@ -1,9 +1,38 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import viteCompression from 'vite-plugin-compression';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // Gzip compression
+    viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240, // Only compress files larger than 10KB
+      algorithm: 'gzip',
+      ext: '.gz',
+      deleteOriginFile: false,
+    }),
+    // Brotli compression (better compression ratio)
+    viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      deleteOriginFile: false,
+    }),
+    // Bundle analyzer (only in build mode)
+    visualizer({
+      filename: './dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
@@ -50,16 +79,69 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'esnext',
+    target: 'es2015',
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
     emptyOutDir: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.log in production
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+      format: {
+        comments: false, // Remove comments
+      },
+    },
+    cssCodeSplit: true,
+    cssMinify: true,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          motion: ['motion/react'],
+        manualChunks: (id) => {
+          // Vendor chunking strategy for better caching
+          if (id.includes('node_modules')) {
+            // React core
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            // Radix UI components
+            if (id.includes('@radix-ui')) {
+              return 'radix-vendor';
+            }
+            // Motion/animation libraries
+            if (id.includes('motion') || id.includes('embla-carousel')) {
+              return 'animation-vendor';
+            }
+            // Form libraries
+            if (id.includes('react-hook-form') || id.includes('react-day-picker')) {
+              return 'form-vendor';
+            }
+            // Chart libraries
+            if (id.includes('recharts')) {
+              return 'chart-vendor';
+            }
+            // Other vendors
+            return 'vendor';
+          }
+        },
+        // Optimize chunk names for better caching
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/\.(png|jpe?g|gif|svg|webp|avif)$/i.test(assetInfo.name)) {
+            return 'assets/images/[name]-[hash][extname]';
+          } else if (/\.(woff2?|ttf|otf|eot)$/i.test(assetInfo.name)) {
+            return 'assets/fonts/[name]-[hash][extname]';
+          } else if (/\.css$/i.test(assetInfo.name)) {
+            return 'assets/css/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
         },
       },
     },
@@ -67,5 +149,10 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+    exclude: [],
   },
 });

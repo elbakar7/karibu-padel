@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 
-import { About } from './components/About';
-import { BookingDialog } from './components/BookingDialog';
-import { Contact } from './components/Contact';
-import { CourtExperience } from './components/CourtExperience';
-import { Events } from './components/Events';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { Gallery } from './components/Gallery';
-import { HeroCarousel } from './components/HeroCarousel';
+// Critical components - load immediately
 import { Navigation } from './components/Navigation';
 import { SEO } from './components/SEO';
+import { HeroCarousel } from './components/HeroCarousel';
+
+// Non-critical components - lazy load
+const About = lazy(() => import('./components/About').then(module => ({ default: module.About })));
+const CourtExperience = lazy(() => import('./components/CourtExperience').then(module => ({ default: module.CourtExperience })));
+const Events = lazy(() => import('./components/Events').then(module => ({ default: module.Events })));
+const Gallery = lazy(() => import('./components/Gallery').then(module => ({ default: module.Gallery })));
+const Contact = lazy(() => import('./components/Contact').then(module => ({ default: module.Contact })));
+const FloatingWhatsApp = lazy(() => import('./components/FloatingWhatsApp').then(module => ({ default: module.FloatingWhatsApp })));
+const BookingDialog = lazy(() => import('./components/BookingDialog').then(module => ({ default: module.BookingDialog })));
 import {
   courtsidePicture,
   defaultOgImageUrl,
@@ -53,13 +56,15 @@ export default function App() {
       <div className="relative bg-[#002B5B] overflow-x-hidden">
         <Navigation onBookingClick={handleOpenBooking} />
         <HeroCarousel images={heroCarouselImages} onBookingClick={handleOpenBooking} />
-        <About images={aboutImages} />
-        <CourtExperience courtImage={courtsidePicture} />
-        <Events eventImages={eventImages} />
-        <Gallery images={galleryImages} />
-        <Contact backgroundImage={walkwayPicture} />
-        <FloatingWhatsApp />
-        <BookingDialog isOpen={isBookingDialogOpen} onClose={handleCloseBooking} />
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <About images={aboutImages} />
+          <CourtExperience courtImage={courtsidePicture} />
+          <Events eventImages={eventImages} />
+          <Gallery images={galleryImages} />
+          <Contact backgroundImage={walkwayPicture} />
+          <FloatingWhatsApp />
+          <BookingDialog isOpen={isBookingDialogOpen} onClose={handleCloseBooking} />
+        </Suspense>
       </div>
     </>
   );
