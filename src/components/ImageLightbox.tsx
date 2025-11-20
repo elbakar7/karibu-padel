@@ -172,29 +172,29 @@ export function ImageLightbox({
             </div>
           </motion.button>
 
-          {/* Image Container */}
+          {/* Image Container - Centered Modal */}
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center p-4 sm:p-8"
+            className="relative w-auto max-w-4xl mx-auto my-auto"
           >
-            <div className="relative max-w-full max-h-full">
+            <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
               <ResponsivePicture
                 image={images[currentIndex]}
                 alt={`Gallery image ${currentIndex + 1}`}
-                pictureClassName="block max-w-full max-h-full"
-                imgClassName="max-w-full max-h-[85vh] object-contain rounded-lg sm:rounded-xl shadow-2xl ring-1 ring-white/10"
+                pictureClassName="block w-full h-full"
+                imgClassName="w-full max-h-[70vh] object-contain"
                 loading="eager"
                 fetchPriority="high"
-                sizes="90vw"
+                sizes="(min-width: 896px) 896px, 90vw"
               />
               
               {/* Image Shadow Glow */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00BFA6]/20 via-[#FFD479]/20 to-[#FF6B5A]/20 blur-3xl opacity-50 rounded-xl" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00BFA6]/30 via-[#FFD479]/30 to-[#FF6B5A]/30 blur-3xl opacity-60" />
             </div>
           </motion.div>
 
