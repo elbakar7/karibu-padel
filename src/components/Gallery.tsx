@@ -15,6 +15,11 @@ export function Gallery({ images }: GalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  // Remove duplicate images by using the webp src as unique identifier
+  const uniqueImages = images.filter((image, index, self) => 
+    index === self.findIndex((t) => t.webp === image.webp)
+  );
+
   const handleImageClick = useCallback((index: number) => {
     setSelectedImageIndex(index);
     setLightboxOpen(true);
@@ -136,7 +141,7 @@ export function Gallery({ images }: GalleryProps) {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[180px] sm:auto-rows-[220px] md:auto-rows-[260px] gap-2 sm:gap-3 md:gap-4"
         >
-          {images.map((image, index) => (
+          {uniqueImages.map((image, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -268,7 +273,7 @@ export function Gallery({ images }: GalleryProps) {
       {/* Lightbox */}
       <ImageLightbox
         isOpen={lightboxOpen}
-        images={images}
+        images={uniqueImages}
         currentIndex={selectedImageIndex}
         onClose={handleCloseLightbox}
         onNavigate={handleLightboxNavigate}
