@@ -42,9 +42,6 @@ export function ImageLightbox({
     onClose();
   };
 
-  const controlButtonClass =
-    'flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-full text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60';
-
   useEffect(() => {
     if (!isOpen) return;
 
@@ -75,81 +72,154 @@ export function ImageLightbox({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
           onClick={onClose}
         >
-            {/* Controls cluster - Top Center */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ delay: 0.1 }}
-              className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 text-white"
-              onClick={(event) => event.stopPropagation()}
+          {/* Close Button - Top Right Corner */}
+          <motion.button
+            type="button"
+            onClick={handleCloseClick}
+            aria-label="Close lightbox"
+            initial={{ opacity: 0, scale: 0.8, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50 group"
+          >
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-white/20 hover:border-white/40 hover:scale-110 transition-all duration-300">
+              <X className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-lg" />
+              {/* Animated Ring on Hover */}
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-[#FF6B5A]"
+                initial={{ scale: 1, opacity: 0 }}
+                whileHover={{ scale: 1.3, opacity: 0 }}
+                transition={{ duration: 0.6, repeat: Infinity }}
+              />
+            </div>
+          </motion.button>
+
+          {/* Image Counter - Top Center */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
+            className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl"
+          >
+            <span className="text-white text-sm sm:text-base font-semibold">
+              {currentIndex + 1} <span className="text-white/60">of</span> {images.length}
+            </span>
+          </motion.div>
+
+          {/* Previous Button - Left Side */}
+          <motion.button
+            type="button"
+            onClick={handlePrevClick}
+            disabled={isFirstImage}
+            aria-label="Previous image"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className={`absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 group ${
+              isFirstImage ? 'opacity-40 cursor-not-allowed' : ''
+            }`}
+          >
+            <div
+              className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl transition-all duration-300 ${
+                !isFirstImage ? 'hover:bg-white/20 hover:border-[#00BFA6]/60 hover:scale-110' : ''
+              }`}
             >
-              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
-                <button
-                  type="button"
-                  onClick={handlePrevClick}
-                  disabled={isFirstImage}
-                  aria-label="Previous image"
-                  className={`${controlButtonClass} ${
-                    isFirstImage
-                      ? 'opacity-40 cursor-not-allowed'
-                      : 'hover:bg-white/20 hover:scale-110'
-                  }`}
-                >
-                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 text-white drop-shadow-lg" />
+              {/* Animated Glow on Hover */}
+              {!isFirstImage && (
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-[#00BFA6]/30 blur-xl opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </div>
+          </motion.button>
 
-                <button
-                  type="button"
-                  onClick={handleCloseClick}
-                  aria-label="Close lightbox"
-                  className={`${controlButtonClass} hover:bg-white/20 hover:scale-110`}
-                >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
+          {/* Next Button - Right Side */}
+          <motion.button
+            type="button"
+            onClick={handleNextClick}
+            disabled={isLastImage}
+            aria-label="Next image"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className={`absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 group ${
+              isLastImage ? 'opacity-40 cursor-not-allowed' : ''
+            }`}
+          >
+            <div
+              className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl transition-all duration-300 ${
+                !isLastImage ? 'hover:bg-white/20 hover:border-[#00BFA6]/60 hover:scale-110' : ''
+              }`}
+            >
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 text-white drop-shadow-lg" />
+              {/* Animated Glow on Hover */}
+              {!isLastImage && (
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-[#00BFA6]/30 blur-xl opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </div>
+          </motion.button>
 
-                <button
-                  type="button"
-                  onClick={handleNextClick}
-                  disabled={isLastImage}
-                  aria-label="Next image"
-                  className={`${controlButtonClass} ${
-                    isLastImage
-                      ? 'opacity-40 cursor-not-allowed'
-                      : 'hover:bg-white/20 hover:scale-110'
-                  }`}
-                >
-                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
-              </div>
-
-              <span className="text-xs sm:text-sm font-medium text-white/80">
-                {currentIndex + 1} / {images.length}
-              </span>
-            </motion.div>
-
-          {/* Image */}
+          {/* Image Container */}
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center p-4 sm:p-8"
+            className="relative max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center p-4 sm:p-8"
           >
-            <ResponsivePicture
-              image={images[currentIndex]}
-              alt={`Gallery image ${currentIndex + 1}`}
-              pictureClassName="block max-w-full max-h-full"
-              imgClassName="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-              loading="eager"
-              fetchPriority="high"
-              sizes="90vw"
-            />
+            <div className="relative max-w-full max-h-full">
+              <ResponsivePicture
+                image={images[currentIndex]}
+                alt={`Gallery image ${currentIndex + 1}`}
+                pictureClassName="block max-w-full max-h-full"
+                imgClassName="max-w-full max-h-[85vh] object-contain rounded-lg sm:rounded-xl shadow-2xl ring-1 ring-white/10"
+                loading="eager"
+                fetchPriority="high"
+                sizes="90vw"
+              />
+              
+              {/* Image Shadow Glow */}
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00BFA6]/20 via-[#FFD479]/20 to-[#FF6B5A]/20 blur-3xl opacity-50 rounded-xl" />
+            </div>
+          </motion.div>
+
+          {/* Keyboard Hints - Bottom Center */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+            className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 hidden sm:flex items-center gap-4 px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full"
+          >
+            <div className="flex items-center gap-2">
+              <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-xs font-mono">←</kbd>
+              <span className="text-white/60 text-sm">Previous</span>
+            </div>
+            <div className="w-px h-4 bg-white/20" />
+            <div className="flex items-center gap-2">
+              <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-xs font-mono">→</kbd>
+              <span className="text-white/60 text-sm">Next</span>
+            </div>
+            <div className="w-px h-4 bg-white/20" />
+            <div className="flex items-center gap-2">
+              <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-xs font-mono">Esc</kbd>
+              <span className="text-white/60 text-sm">Close</span>
+            </div>
           </motion.div>
         </motion.div>
       )}

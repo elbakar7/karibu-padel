@@ -28,15 +28,17 @@ export function Gallery({ images }: GalleryProps) {
     setSelectedImageIndex(index);
   }, []);
 
-  // Define grid layout patterns for visual interest
+  // Define modern bento-box layout patterns for visual interest
   const getGridItemClass = (index: number) => {
     const patterns = [
-      'md:col-span-2 md:row-span-2', // Large
-      'md:col-span-1 md:row-span-1', // Small
-      'md:col-span-1 md:row-span-1', // Small
-      'md:col-span-1 md:row-span-2', // Tall
-      'md:col-span-2 md:row-span-1', // Wide
-      'md:col-span-1 md:row-span-1', // Small
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-2', // Featured Large
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-1 md:row-span-2', // Tall Portrait
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-1', // Wide Landscape
+      'col-span-1 row-span-1', // Standard
+      'col-span-1 row-span-1 md:col-span-1 md:row-span-2', // Tall Portrait
+      'col-span-1 row-span-1 md:col-span-2 md:row-span-1', // Wide Landscape
     ];
     return patterns[index % patterns.length];
   };
@@ -127,12 +129,12 @@ export function Gallery({ images }: GalleryProps) {
           </motion.div>
         </motion.div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid - Modern Bento Box Layout */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[240px] sm:auto-rows-[280px] gap-3 sm:gap-4 md:gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[180px] sm:auto-rows-[220px] md:auto-rows-[260px] gap-2 sm:gap-3 md:gap-4"
         >
           {images.map((image, index) => (
             <motion.div
@@ -148,12 +150,12 @@ export function Gallery({ images }: GalleryProps) {
               onClick={() => handleImageClick(index)}
             >
               {/* Image Container */}
-              <div className="relative h-full w-full rounded-2xl overflow-hidden bg-[#001a3d]">
+              <div className="relative h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a3d] to-[#002B5B] shadow-xl">
                 <ResponsivePicture
                   image={image}
                   alt={`Gallery ${index + 1}`}
                   pictureClassName="block h-full w-full"
-                  imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  imgClassName="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                   draggable={false}
                   loading="lazy"
                   decoding="async"
@@ -162,62 +164,62 @@ export function Gallery({ images }: GalleryProps) {
                   lazyThreshold={0.1}
                 />
 
-                {/* Gradient Overlay */}
+                {/* Modern Gradient Overlay */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/90 via-[#002B5B]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   initial={false}
                 />
 
-                {/* Corner Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#00BFA6]/0 to-[#00BFA6]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* Hover Content */}
+                {/* Shimmer Effect on Hover */}
                 <motion.div
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000"
+                  initial={false}
+                />
+
+                {/* Hover Content - Modern & Centered */}
+                <motion.div
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
                   initial={false}
                 >
-                  {/* Expand Icon */}
+                  {/* Expand Icon - Larger and more prominent */}
                   <motion.div
-                    className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-2xl border-2 border-white/20 flex items-center justify-center shadow-2xl"
+                    whileHover={{ scale: 1.15, borderColor: 'rgba(0, 191, 166, 0.6)' }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Maximize2 className="w-7 h-7 text-white" />
+                    <Maximize2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 text-white drop-shadow-lg" />
                   </motion.div>
 
-                  {/* Hashtag Badge */}
+                  {/* View Text */}
                   <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileHover={{ y: 0, opacity: 1 }}
-                    className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="px-5 py-2 bg-[#00BFA6]/90 backdrop-blur-xl rounded-full shadow-xl"
                   >
-                    <span className="text-white text-sm font-medium">#KaribuPadel</span>
+                    <span className="text-white text-sm sm:text-base font-semibold">View Full Size</span>
                   </motion.div>
                 </motion.div>
 
-                {/* Top Border Animation */}
+                {/* Top Accent Line */}
                 <motion.div
-                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00BFA6] via-[#FFD479] to-[#FF6B5A]"
+                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00BFA6] via-[#FFD479] to-[#FF6B5A] opacity-0 group-hover:opacity-100"
                   initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
+                  animate={{ scaleX: 1 }}
                   transition={{ duration: 0.5 }}
                 />
 
-                {/* Bottom Info Strip */}
+                {/* Image Counter Badge */}
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#002B5B] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute bottom-3 left-3 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   initial={false}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-sm">Image {index + 1}</span>
-                    <div className="w-2 h-2 rounded-full bg-[#00BFA6] animate-pulse" />
-                  </div>
+                  <span className="text-white/90 text-xs sm:text-sm font-medium">#{index + 1}</span>
                 </motion.div>
               </div>
 
-              {/* Glow Effect */}
+              {/* Enhanced Glow Effect */}
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-br from-[#00BFA6]/0 via-[#FFD479]/0 to-[#FF6B5A]/0 group-hover:from-[#00BFA6]/20 group-hover:via-[#FFD479]/20 group-hover:to-[#FF6B5A]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                className="absolute -inset-[2px] bg-gradient-to-br from-[#00BFA6]/0 via-[#FFD479]/0 to-[#FF6B5A]/0 group-hover:from-[#00BFA6]/30 group-hover:via-[#FFD479]/30 group-hover:to-[#FF6B5A]/30 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"
               />
             </motion.div>
           ))}
