@@ -1,9 +1,8 @@
 import { motion, useInView } from 'motion/react';
-import { useCallback, useRef, useState } from 'react';
-import { Maximize2, Grid3x3, Instagram } from 'lucide-react';
+import { useRef } from 'react';
+import { Grid3x3, Instagram } from 'lucide-react';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
-import { ImageLightbox } from './ImageLightbox';
   
 interface GalleryProps {
   images: PictureAsset[];
@@ -12,26 +11,11 @@ interface GalleryProps {
 export function Gallery({ images }: GalleryProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.05 });
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   // Remove duplicate images by using the img src as unique identifier
   const uniqueImages = images.filter((image, index, self) => 
     index === self.findIndex((t) => t.img.src === image.img.src)
   );
-
-  const handleImageClick = useCallback((index: number) => {
-    setSelectedImageIndex(index);
-    setLightboxOpen(true);
-  }, []);
-
-  const handleCloseLightbox = useCallback(() => {
-    setLightboxOpen(false);
-  }, []);
-
-  const handleLightboxNavigate = useCallback((index: number) => {
-    setSelectedImageIndex(index);
-  }, []);
 
   // Define modern bento-box layout patterns for visual interest with more variety
   const getGridItemClass = (index: number) => {
@@ -155,11 +139,10 @@ export function Gallery({ images }: GalleryProps) {
                 delay: 0.05 * (index % 6),
                 ease: [0.25, 0.4, 0.25, 1]
               }}
-              className={`relative group cursor-pointer ${getGridItemClass(index)}`}
-              onClick={() => handleImageClick(index)}
+              className={`relative group ${getGridItemClass(index)}`}
             >
               {/* Image Container */}
-              <div className={`relative h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a3d] to-[#002B5B] shadow-xl transition-all duration-300 ${lightboxOpen && selectedImageIndex === index ? 'ring-4 ring-blue-500' : ''}`}>
+              <div className="relative h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a3d] to-[#002B5B] shadow-xl transition-all duration-300">
                 <ResponsivePicture
                   image={image}
                   alt={`Gallery ${index + 1}`}
@@ -184,32 +167,6 @@ export function Gallery({ images }: GalleryProps) {
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000"
                   initial={false}
                 />
-
-                {/* Hover Content - Modern & Centered - Hidden when image is opened */}
-                {!(lightboxOpen && selectedImageIndex === index) && (
-                  <motion.div
-                    className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                    initial={false}
-                  >
-                    {/* Expand Icon - Larger and more prominent */}
-                    <motion.div
-                      className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-2xl border-2 border-white/20 flex items-center justify-center shadow-2xl"
-                      whileHover={{ scale: 1.15, borderColor: 'rgba(0, 191, 166, 0.6)' }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Maximize2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 text-white drop-shadow-lg" />
-                    </motion.div>
-
-                    {/* View Text */}
-                    <motion.div
-                      initial={{ y: 10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      className="px-5 py-2 bg-[#00BFA6]/90 backdrop-blur-xl rounded-full shadow-xl"
-                    >
-                      <span className="text-white text-sm sm:text-base font-semibold">View Full Size</span>
-                    </motion.div>
-                  </motion.div>
-                )}
 
                 {/* Top Accent Line */}
                 <motion.div
@@ -273,15 +230,6 @@ export function Gallery({ images }: GalleryProps) {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Lightbox */}
-      <ImageLightbox
-        isOpen={lightboxOpen}
-        images={uniqueImages}
-        currentIndex={selectedImageIndex}
-        onClose={handleCloseLightbox}
-        onNavigate={handleLightboxNavigate}
-      />
     </section>
   );
 }
