@@ -73,7 +73,7 @@ export function ImageLightbox({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md"
           onClick={onClose}
         >
           {/* Close Button - Top Right Corner */}
@@ -85,7 +85,7 @@ export function ImageLightbox({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -20 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50 group"
+            className="absolute top-4 right-4 z-50 group"
           >
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-white/20 hover:border-white/40 hover:scale-110 transition-all duration-300">
               <X className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-lg" />
@@ -105,7 +105,7 @@ export function ImageLightbox({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl"
+            className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl"
           >
             <span className="text-white text-sm sm:text-base font-semibold">
               {currentIndex + 1} <span className="text-white/60">of</span> {images.length}
@@ -122,7 +122,7 @@ export function ImageLightbox({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3, delay: 0.2 }}
-            className={`absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 group ${
+            className={`absolute left-6 top-1/2 -translate-y-1/2 z-50 group ${
               isFirstImage ? 'opacity-40 cursor-not-allowed' : ''
             }`}
           >
@@ -152,7 +152,7 @@ export function ImageLightbox({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3, delay: 0.2 }}
-            className={`absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 group ${
+            className={`absolute right-6 top-1/2 -translate-y-1/2 z-50 group ${
               isLastImage ? 'opacity-40 cursor-not-allowed' : ''
             }`}
           >
@@ -175,27 +175,22 @@ export function ImageLightbox({
           {/* Image Container - Centered Modal */}
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-auto max-w-4xl mx-auto my-auto"
+            className="relative flex items-center justify-center"
           >
-            <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
-              <ResponsivePicture
-                image={images[currentIndex]}
-                alt={`Gallery image ${currentIndex + 1}`}
-                pictureClassName="block w-full h-full"
-                imgClassName="w-full max-h-[70vh] object-contain"
-                loading="eager"
-                fetchPriority="high"
-                sizes="(min-width: 896px) 896px, 90vw"
-              />
-              
-              {/* Image Shadow Glow */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00BFA6]/30 via-[#FFD479]/30 to-[#FF6B5A]/30 blur-3xl opacity-60" />
-            </div>
+            <ResponsivePicture
+              image={images[currentIndex]}
+              alt={`Gallery image ${currentIndex + 1}`}
+              pictureClassName="block"
+              imgClassName="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              loading="eager"
+              fetchPriority="high"
+              sizes="95vw"
+            />
           </motion.div>
 
           {/* Keyboard Hints - Bottom Center */}
