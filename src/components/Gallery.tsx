@@ -15,9 +15,9 @@ export function Gallery({ images }: GalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  // Remove duplicate images by using the webp src as unique identifier
+  // Remove duplicate images by using the img src as unique identifier
   const uniqueImages = images.filter((image, index, self) => 
-    index === self.findIndex((t) => t.webp === image.webp)
+    index === self.findIndex((t) => t.img.src === image.img.src)
   );
 
   const handleImageClick = useCallback((index: number) => {
