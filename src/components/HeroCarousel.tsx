@@ -1,10 +1,11 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { ImageLightbox } from './ImageLightbox';
 import {
   Carousel,
   CarouselContent,
@@ -22,6 +23,8 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
   const scale = useTransform(scrollY, [0, 500], [1, 1.2]);
   const prefersReducedMotion = usePrefersReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const plugin = useMemo(() => {
     return Autoplay({ 
@@ -29,6 +32,19 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
       stopOnInteraction: false,
       stopOnMouseEnter: false
     });
+  }, []);
+
+  const handleImageClick = useCallback((index: number) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  }, []);
+
+  const handleCloseLightbox = useCallback(() => {
+    setLightboxOpen(false);
+  }, []);
+
+  const handleLightboxNavigate = useCallback((index: number) => {
+    setSelectedImageIndex(index);
   }, []);
 
   useEffect(() => {
@@ -87,20 +103,40 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
                 style={
                   prefersReducedMotion ? undefined : { opacity, scale, willChange: 'transform, opacity' }
                 }
-                className="relative w-full h-full"
-                aria-hidden="true"
+                className="relative w-full h-full cursor-pointer group"
+                onClick={() => handleImageClick(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleImageClick(index);
+                  }
+                }}
+                aria-label={`View full size image ${index + 1}`}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85 z-10 group-hover:from-[#001a3d]/60 group-hover:via-[#001a3d]/20 group-hover:to-[#002B5B]/75 transition-colors duration-300" />
                 <ResponsivePicture
                   image={image}
                   alt={`Karibu Padel Club - Slide ${index + 1}`}
                   pictureClassName="absolute inset-0 h-full w-full"
-                  imgClassName="w-full h-full object-cover"
+                  imgClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading={index <= 1 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : index === 1 ? "auto" : "low"}
                   decoding="async"
                   sizes="100vw"
                 />
+                {/* Hover indicator */}
+                <motion.div
+                  className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  initial={false}
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center shadow-2xl">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </motion.div>
               </motion.div>
             </CarouselItem>
           ))}
@@ -187,6 +223,15 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}
         aria-hidden="true"
+      />
+
+      {/* Lightbox for full-size image viewing */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        images={images}
+        currentIndex={selectedImageIndex}
+        onClose={handleCloseLightbox}
+        onNavigate={handleLightboxNavigate}
       />
     </section>
   );
