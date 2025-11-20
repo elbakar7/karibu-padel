@@ -150,7 +150,7 @@ export function ImageLightbox({
             </div>
           </motion.button>
 
-          {/* Image Container - Centered Modal */}
+          {/* Image Container - Centered Modal with 50vw width */}
           <motion.div
             key={currentIndex}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -158,9 +158,9 @@ export function ImageLightbox({
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative flex items-center justify-center"
+            className="relative w-[50vw] max-h-[80vh] flex items-center justify-center bg-transparent"
           >
-            {/* Close Button - Top Right of Image */}
+            {/* Close Button - Top Right of Image Container */}
             <motion.button
               type="button"
               onClick={handleCloseClick}
@@ -171,7 +171,7 @@ export function ImageLightbox({
               transition={{ duration: 0.3, delay: 0.1 }}
               className="absolute top-2 right-2 z-50 group"
             >
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-black/60 hover:border-white/40 hover:scale-110 transition-all duration-300">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-black/70 hover:border-white/40 hover:scale-110 transition-all duration-300">
                 <X className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-lg" />
               </div>
             </motion.button>
@@ -180,10 +180,10 @@ export function ImageLightbox({
               image={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               pictureClassName="block"
-              imgClassName="max-w-[33vw] max-h-[80vh] object-contain rounded-xl shadow-2xl"
+              imgClassName="object-contain max-w-full max-h-[80vh] rounded-lg shadow-2xl"
               loading="eager"
               fetchPriority="high"
-              sizes="33vw"
+              sizes="50vw"
             />
           </motion.div>
 
