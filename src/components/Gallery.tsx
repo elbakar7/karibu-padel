@@ -150,7 +150,7 @@ export function Gallery({ images }: GalleryProps) {
               onClick={() => handleImageClick(index)}
             >
               {/* Image Container */}
-              <div className="relative h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a3d] to-[#002B5B] shadow-xl">
+              <div className={`relative h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a3d] to-[#002B5B] shadow-xl transition-all duration-300 ${lightboxOpen && selectedImageIndex === index ? 'ring-4 ring-blue-500' : ''}`}>
                 <ResponsivePicture
                   image={image}
                   alt={`Gallery ${index + 1}`}
@@ -176,29 +176,31 @@ export function Gallery({ images }: GalleryProps) {
                   initial={false}
                 />
 
-                {/* Hover Content - Modern & Centered */}
-                <motion.div
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                  initial={false}
-                >
-                  {/* Expand Icon - Larger and more prominent */}
+                {/* Hover Content - Modern & Centered - Hidden when image is opened */}
+                {!(lightboxOpen && selectedImageIndex === index) && (
                   <motion.div
-                    className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-2xl border-2 border-white/20 flex items-center justify-center shadow-2xl"
-                    whileHover={{ scale: 1.15, borderColor: 'rgba(0, 191, 166, 0.6)' }}
-                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                    initial={false}
                   >
-                    <Maximize2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 text-white drop-shadow-lg" />
-                  </motion.div>
+                    {/* Expand Icon - Larger and more prominent */}
+                    <motion.div
+                      className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-2xl border-2 border-white/20 flex items-center justify-center shadow-2xl"
+                      whileHover={{ scale: 1.15, borderColor: 'rgba(0, 191, 166, 0.6)' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Maximize2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 text-white drop-shadow-lg" />
+                    </motion.div>
 
-                  {/* View Text */}
-                  <motion.div
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="px-5 py-2 bg-[#00BFA6]/90 backdrop-blur-xl rounded-full shadow-xl"
-                  >
-                    <span className="text-white text-sm sm:text-base font-semibold">View Full Size</span>
+                    {/* View Text */}
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="px-5 py-2 bg-[#00BFA6]/90 backdrop-blur-xl rounded-full shadow-xl"
+                    >
+                      <span className="text-white text-sm sm:text-base font-semibold">View Full Size</span>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
+                )}
 
                 {/* Top Accent Line */}
                 <motion.div
