@@ -10,6 +10,7 @@ import { Gallery } from './components/Gallery';
 import { HeroCarousel } from './components/HeroCarousel';
 import { Navigation } from './components/Navigation';
 import { SEO } from './components/SEO';
+import { Testimonials } from './components/Testimonials';
 import {
   courtsidePicture,
   defaultOgImageUrl,
@@ -70,6 +71,7 @@ export default function App() {
         <Navigation onBookingClick={handleOpenBooking} />
         <HeroCarousel images={heroCarouselImages} onBookingClick={handleOpenBooking} />
         <About images={aboutImages} />
+        <Testimonials />
         <CourtExperience courtImage={courtsidePicture} />
         <Events eventImages={eventImages} />
         <Gallery images={galleryImages} />
