@@ -180,7 +180,7 @@ export function ImageLightbox({
               image={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               pictureClassName="block"
-              imgClassName="object-contain max-w-full max-h-[80vh] rounded-lg shadow-2xl"
+              imgClassName="object-contain max-w-full max-h-full rounded-xl shadow-xl"
               loading="eager"
               fetchPriority="high"
               sizes="50vw"
