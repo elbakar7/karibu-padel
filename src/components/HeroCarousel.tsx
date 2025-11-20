@@ -1,16 +1,12 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useState, useMemo, useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import { ImageLightbox } from './ImageLightbox';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from './ui/carousel';
 
 interface HeroCarouselProps {
   images: PictureAsset[];
@@ -22,17 +18,29 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const scale = useTransform(scrollY, [0, 500], [1, 1.2]);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  const plugin = useMemo(() => {
+  // Embla autoplay plugin with proper configuration
+  const autoplayPlugin = useMemo(() => {
     return Autoplay({ 
       delay: 5000,
       stopOnInteraction: false,
-      stopOnMouseEnter: false
+      stopOnMouseEnter: false,
+      stopOnFocusIn: false
     });
   }, []);
+
+  // Initialize Embla carousel with proper options
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: 'start',
+      skipSnaps: false,
+      dragFree: false
+    },
+    [autoplayPlugin]
+  );
 
   const handleImageClick = useCallback((index: number) => {
     setSelectedImageIndex(index);
@@ -47,12 +55,12 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
     setSelectedImageIndex(index);
   }, []);
 
+  // Preload images for performance
   useEffect(() => {
     if (images.length === 0) return;
     
     const preloadLinks: HTMLLinkElement[] = [];
 
-    // Preload all carousel images with appropriate priority
     images.forEach((image, index) => {
       const selector = `link[data-hero-preload="${index}"]`;
       let preloadLink = document.head.querySelector<HTMLLinkElement>(selector);
@@ -66,7 +74,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
         document.head.appendChild(preloadLink);
       }
 
-      // Preload AVIF format for modern browsers (best compression)
+      // Preload AVIF format for modern browsers
       if (image.sources.length > 0 && image.sources[0].type === 'image/avif') {
         preloadLink.href = image.sources[0].srcSet.split(',')[0].trim().split(' ')[0];
         preloadLink.type = 'image/avif';
@@ -88,17 +96,11 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      <Carousel
-        opts={{
-          align: 'start',
-          loop: true,
-        }}
-        plugins={[plugin]}
-        className="absolute inset-0"
-      >
-        <CarouselContent className="ml-0 h-full">
+      {/* Embla Carousel Container */}
+      <div className="embla absolute inset-0" ref={emblaRef}>
+        <div className="embla__container h-full">
           {images.map((image, index) => (
-            <CarouselItem key={index} className="pl-0 h-full relative">
+            <div key={index} className="embla__slide">
               <motion.div
                 style={
                   prefersReducedMotion ? undefined : { opacity, scale, willChange: 'transform, opacity' }
@@ -138,11 +140,12 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
                   </div>
                 </motion.div>
               </motion.div>
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-      </Carousel>
+        </div>
+      </div>
 
+      {/* Hero Content Overlay */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -192,7 +195,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
               whileHover={prefersReducedMotion ? undefined : { x: 0 }}
               transition={{ duration: 0.3 }}
             />
-            <span className="relative z-10">Book Your Court</span>
+            <span className="relative z-10 font-medium">Book Your Court</span>
           </motion.button>
         </motion.div>
 

@@ -16,3 +16,22 @@
 .to-\[\#1DB954\]\/5{--tw-gradient-to:#1db9540d;--tw-gradient-stops:var(--tw-gradient-via-stops,var(--tw-gradient-position),var(--tw-gradient-from) var(--tw-gradient-from-position),var(--tw-gradient-to) var(--tw-gradient-to-position))}
 @media(hover:hover){.hover\:shadow-\[0_0_40px_rgba\(29\,185\,84\,0\.5\)\]:hover{--tw-shadow:0 0 40px var(--tw-shadow-color,#1db95480);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}}
 .focus-visible\:ring-\[\#1DB954\]\/60:focus-visible{--tw-ring-color:#1db95499}
+
+/* Embla Carousel Core Styles */
+.embla {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.embla__container {
+  display: flex;
+  height: 100%;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
