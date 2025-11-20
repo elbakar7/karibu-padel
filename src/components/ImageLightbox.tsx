@@ -76,28 +76,6 @@ export function ImageLightbox({
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md"
           onClick={onClose}
         >
-          {/* Close Button - Top Right Corner */}
-          <motion.button
-            type="button"
-            onClick={handleCloseClick}
-            aria-label="Close lightbox"
-            initial={{ opacity: 0, scale: 0.8, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -20 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="absolute top-4 right-4 z-50 group"
-          >
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-white/20 hover:border-white/40 hover:scale-110 transition-all duration-300">
-              <X className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-lg" />
-              {/* Animated Ring on Hover */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-[#FF6B5A]"
-                initial={{ scale: 1, opacity: 0 }}
-                whileHover={{ scale: 1.3, opacity: 0 }}
-                transition={{ duration: 0.6, repeat: Infinity }}
-              />
-            </div>
-          </motion.button>
 
           {/* Image Counter - Top Center */}
           <motion.div
@@ -182,14 +160,30 @@ export function ImageLightbox({
             onClick={(e) => e.stopPropagation()}
             className="relative flex items-center justify-center"
           >
+            {/* Close Button - Top Right of Image */}
+            <motion.button
+              type="button"
+              onClick={handleCloseClick}
+              aria-label="Close lightbox"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="absolute top-2 right-2 z-50 group"
+            >
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center shadow-2xl hover:bg-black/60 hover:border-white/40 hover:scale-110 transition-all duration-300">
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-lg" />
+              </div>
+            </motion.button>
+
             <ResponsivePicture
               image={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               pictureClassName="block"
-              imgClassName="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              imgClassName="max-w-[33vw] max-h-[80vh] object-contain rounded-xl shadow-2xl"
               loading="eager"
               fetchPriority="high"
-              sizes="95vw"
+              sizes="33vw"
             />
           </motion.div>
 
