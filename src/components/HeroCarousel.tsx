@@ -164,7 +164,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
-                className="block bg-gradient-to-r from-white to-[#1DB954] bg-clip-text text-transparent"
+                className="block text-black"
               >
                 Karibu Padel Club
               </motion.span>
@@ -175,7 +175,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/90 mb-8 md:mb-12 max-w-2xl mx-auto px-4"
+            className="text-lg md:text-xl text-black mb-8 md:mb-12 max-w-2xl mx-auto px-4"
           >
             The No.1 Padel Court & Club in Zanzibar
           </motion.p>
