@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Update this URL once the public domain is confirmed
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://karibupadel.com/sitemap.xml
