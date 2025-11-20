@@ -467,4 +467,24 @@ export const galleryImageIMG4462: PictureAsset = {
   placeholder: loungePlaceholder,
 };
 
+// Auto-load all gallery images using import.meta.glob
+const galleryImageModules = import.meta.glob<{ default: string }>(
+  '/src/assets/originals/gallery/*.{jpg,jpeg,png,webp,JPG}',
+  { eager: true }
+);
+
+// Convert gallery images to PictureAsset array
+export const allGalleryImages: PictureAsset[] = Object.entries(galleryImageModules)
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB)) // Sort by filename for consistent ordering
+  .map(([, module]) => ({
+    sources: [],
+    img: {
+      src: module.default,
+      width: 1200,
+      height: 900,
+    },
+    // Use a neutral placeholder for all gallery images
+    placeholder: courtsidePlaceholder,
+  }));
+
 export const defaultOgImageUrl = heroImage;

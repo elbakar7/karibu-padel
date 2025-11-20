@@ -19,22 +19,16 @@ import {
   heroCarouselSlide3,
   loungePicture,
   walkwayPicture,
-  galleryPadelCourt1,
-  galleryPadelCourt2,
-  galleryPexelsAction1,
-  galleryPexelsAction2,
-  galleryPexelsAction3,
-  galleryImage00019,
-  galleryImage00028,
-  galleryImage00041,
-  galleryImage00060,
-  galleryImage00097,
+  allGalleryImages,
   galleryImage00098,
+  galleryImage00041,
   galleryImage00109,
-  galleryImage00126,
+  galleryImage00060,
   galleryImageIMG3051,
-  galleryImageIMG4458,
-  galleryImageIMG4462,
+  galleryPexelsAction1,
+  galleryImage00028,
+  galleryImage00097,
+  galleryImage00126,
 } from './media/images';
 
 export default function App() {
@@ -46,26 +40,9 @@ export default function App() {
   // Updated with new images
   const aboutImages = [galleryImage00060, galleryImage00109, galleryImageIMG3051];
   const eventImages = [galleryPexelsAction1, galleryImage00028, galleryImage00097, galleryImage00126];
-  const galleryImages = [
-    courtsidePicture,
-    galleryImage00019,
-    galleryImage00028,
-    galleryImage00060,
-    galleryImage00097,
-    galleryImage00098,
-    galleryImage00109,
-    galleryImage00126,
-    galleryImageIMG3051,
-    galleryImageIMG4458,
-    galleryImageIMG4462,
-    galleryPadelCourt1,
-    galleryPadelCourt2,
-    galleryPexelsAction1,
-    galleryPexelsAction2,
-    galleryPexelsAction3,
-    walkwayPicture,
-    loungePicture,
-  ];
+  
+  // Use all gallery images loaded automatically via import.meta.glob
+  const galleryImages = allGalleryImages;
 
   const handleOpenBooking = () => setIsBookingDialogOpen(true);
   const handleCloseBooking = () => setIsBookingDialogOpen(false);
