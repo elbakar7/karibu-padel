@@ -26,8 +26,10 @@ import {
   galleryPexelsAction3,
   galleryImage00019,
   galleryImage00028,
+  galleryImage00041,
   galleryImage00060,
   galleryImage00097,
+  galleryImage00098,
   galleryImage00109,
   galleryImage00126,
   galleryImageIMG3051,
@@ -36,8 +38,8 @@ import {
 export default function App() {
   const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
-  // Hero carousel images
-  const heroCarouselImages = [heroCarouselSlide1, heroCarouselSlide2, heroCarouselSlide3];
+  // Hero carousel images - sliding background images
+  const heroCarouselImages = [galleryImage00098, galleryImage00041, galleryImage00109];
   
   // Updated with new images
   const aboutImages = [galleryImage00060, galleryImage00109, galleryImageIMG3051];

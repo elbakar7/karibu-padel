@@ -57,8 +57,10 @@ import galleryPexels3 from '../assets/originals/gallery/pexels-roger-aribau-gisb
 // New gallery images
 import galleryImage19 from '../assets/originals/gallery/image00019.jpg';
 import galleryImage28 from '../assets/originals/gallery/image00028.jpg';
+import galleryImage41 from '../assets/originals/gallery/image00041.jpg';
 import galleryImage60 from '../assets/originals/gallery/image00060.jpg';
 import galleryImage97 from '../assets/originals/gallery/image00097.jpg';
+import galleryImage98 from '../assets/originals/gallery/image00098.jpg';
 import galleryImage109 from '../assets/originals/gallery/image00109.jpg';
 import galleryImage126 from '../assets/originals/gallery/image00126.jpg';
 import galleryImage3051 from '../assets/originals/gallery/IMG_3051.jpg';
@@ -375,6 +377,16 @@ export const galleryImage00028: PictureAsset = {
   placeholder: courtsidePlaceholder,
 };
 
+export const galleryImage00041: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage41,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: loungePlaceholder,
+};
+
 export const galleryImage00060: PictureAsset = {
   sources: [],
   img: {
@@ -389,6 +401,16 @@ export const galleryImage00097: PictureAsset = {
   sources: [],
   img: {
     src: galleryImage97,
+    width: 1200,
+    height: 900,
+  },
+  placeholder: courtsidePlaceholder,
+};
+
+export const galleryImage00098: PictureAsset = {
+  sources: [],
+  img: {
+    src: galleryImage98,
     width: 1200,
     height: 900,
   },
