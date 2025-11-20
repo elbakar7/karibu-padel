@@ -33,6 +33,8 @@ import {
   galleryImage00109,
   galleryImage00126,
   galleryImageIMG3051,
+  galleryImageIMG4458,
+  galleryImageIMG4462,
 } from './media/images';
 
 export default function App() {
@@ -50,9 +52,12 @@ export default function App() {
     galleryImage00028,
     galleryImage00060,
     galleryImage00097,
+    galleryImage00098,
     galleryImage00109,
     galleryImage00126,
     galleryImageIMG3051,
+    galleryImageIMG4458,
+    galleryImageIMG4462,
     galleryPadelCourt1,
     galleryPadelCourt2,
     galleryPexelsAction1,
