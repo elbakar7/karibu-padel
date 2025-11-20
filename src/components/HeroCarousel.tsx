@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import type { PictureAsset } from '../types/media';
 import { ResponsivePicture } from './ResponsivePicture';
@@ -23,7 +23,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const plugin = useCallback(() => {
+  const plugin = useMemo(() => {
     return Autoplay({ 
       delay: 5000,
       stopOnInteraction: false,
@@ -77,7 +77,7 @@ export function HeroCarousel({ images, onBookingClick }: HeroCarouselProps) {
           align: 'start',
           loop: true,
         }}
-        plugins={[plugin()]}
+        plugins={[plugin]}
         className="absolute inset-0"
       >
         <CarouselContent className="ml-0 h-full">
