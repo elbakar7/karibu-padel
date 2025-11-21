@@ -16,6 +16,12 @@
              <p class="text-white/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
                 Experience the energy, passion, and community that makes Karibu Padel Club extraordinary
              </p>
+
+             <div class="inline-flex items-center gap-3">
+                <span class="px-6 py-2.5 bg-gradient-to-r from-[#00BFA6]/10 to-[#FFD479]/10 backdrop-blur-sm border border-[#00BFA6]/20 rounded-full text-[#00BFA6] font-medium hover:scale-105 transition-transform cursor-default">
+                  #KaribuPadelMoments
+                </span>
+             </div>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] gap-3 sm:gap-4 md:gap-5">
@@ -52,6 +58,26 @@
                  </div>";
              }
              ?>
+        </div>
+
+        <div class="text-center mt-20 sm:mt-28 md:mt-40 reveal-on-scroll">
+            <div class="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 sm:px-8 py-5 sm:py-6 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-3xl mx-4 hover:scale-102 hover:border-white/20 transition-all duration-300">
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#00BFA6] to-[#FFD479] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z M17.5 6.5h.01 M2 6a4 4 0 014-4h12a4 4 0 014 4v12a4 4 0 01-4 4H6a4 4 0 01-4-4V6z"></path></svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-white font-semibold">Follow our journey</p>
+                        <p class="text-white/60 text-sm">@karibupadelclub</p>
+                    </div>
+                </div>
+
+                <div class="hidden sm:block w-px h-12 bg-white/20"></div>
+
+                <a href="https://www.instagram.com/karibupadelclub" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-gradient-to-r from-[#00BFA6] to-[#00a890] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-[#00BFA6]/20 transition-all hover:scale-105">
+                    View More on Instagram
+                </a>
+            </div>
         </div>
     </div>
 </section>
