@@ -9,7 +9,8 @@
         ];
         foreach ($heroImages as $index => $image) {
             $activeClass = $index === 0 ? 'opacity-100' : 'opacity-0';
-            echo "<div class=\"hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out $activeClass\" style=\"background-image: url('$image'); background-size: cover; background-position: center;\">
+            echo "<div class=\"hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out $activeClass\">
+                <img src=\"$image\" alt=\"Karibu Padel Club - Slide " . ($index + 1) . "\" class=\"w-full h-full object-cover hover:scale-105 transition-transform duration-[10s] ease-linear\">
                 <div class=\"absolute inset-0 bg-gradient-to-b from-[#001a3d]/70 via-[#001a3d]/30 to-[#002B5B]/85\"></div>
             </div>";
         }

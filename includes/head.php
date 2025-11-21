@@ -63,5 +63,67 @@ $ogImage = $ogImage ?? 'assets/generated/hero/hero-1920.jpg';
         "priceRange": "$$"
     }
     </script>
+    
+    <style>
+        /* Custom Animations */
+        .animate-reveal {
+            animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translate(0);
+            }
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Blob Animations to match Framer Motion */
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, 30px) scale(1.1); }
+            66% { transform: translate(-20px, 10px) scale(1.05); }
+        }
+        .animate-float-1 { animation: float-1 15s ease-in-out infinite; }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -40px) scale(1.2); }
+        }
+        .animate-float-2 { animation: float-2 18s ease-in-out infinite; }
+
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow { animation: bounce-slow 2s ease-in-out infinite; }
+
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+        .animate-pulse-scale { animation: pulse-scale 2s ease-in-out infinite; }
+
+        @keyframes pulse-scale-small {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .animate-pulse-scale-small { animation: pulse-scale-small 1.5s ease-in-out infinite; }
+        
+        /* For hero carousel parallax */
+        .hero-parallax-container {
+            will-change: transform, opacity;
+        }
+    </style>
 </head>
 <body class="bg-[#002B5B] overflow-x-hidden text-white">

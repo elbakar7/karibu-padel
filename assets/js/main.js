@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const isHidden = mobileMenu.classList.contains('hidden');
         if (isHidden) {
             mobileMenu.classList.remove('hidden');
-            // Small delay to allow display:block to apply before opacity transition
             requestAnimationFrame(() => {
                 mobileMenu.classList.remove('h-0', 'opacity-0');
                 mobileMenu.classList.add('h-auto', 'opacity-100');
@@ -51,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Hero Carousel
     const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroContainer = document.getElementById('hero-carousel');
     let currentHeroSlide = 0;
     if (heroSlides.length > 0) {
         setInterval(() => {
@@ -62,22 +62,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
+    // Hero Parallax Effect
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if (scrolled < 500 && heroContainer) {
+            const opacity = 1 - (scrolled / 500);
+            const scale = 1 + (scrolled / 500) * 0.2;
+            
+            heroContainer.style.opacity = Math.max(0, opacity);
+            heroContainer.style.transform = `scale(${scale})`;
+        }
+    });
+
     // 4. About Carousel
     const aboutSlides = document.querySelectorAll('.about-slide');
     const aboutIndicators = document.querySelectorAll('.about-indicator');
     let currentAboutSlide = 0;
     if (aboutSlides.length > 0) {
         setInterval(() => {
-            // Hide current
             aboutSlides[currentAboutSlide].classList.remove('opacity-100');
             aboutSlides[currentAboutSlide].classList.add('opacity-0');
             aboutIndicators[currentAboutSlide].classList.remove('bg-[#1DB954]');
             aboutIndicators[currentAboutSlide].classList.add('bg-white/30');
 
-            // Next
             currentAboutSlide = (currentAboutSlide + 1) % aboutSlides.length;
 
-            // Show next
             aboutSlides[currentAboutSlide].classList.remove('opacity-0');
             aboutSlides[currentAboutSlide].classList.add('opacity-100');
             aboutIndicators[currentAboutSlide].classList.remove('bg-white/30');
@@ -85,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // 6. Scroll Reveal
+    // 5. Scroll Reveal
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -96,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // observer.unobserve(entry.target); // Keep observing if we want repeat (optional, user didn't specify, but usually nice to happen once)
             }
         });
     }, observerOptions);
@@ -106,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 5. Booking Dialog (Global functions)
 function openBookingDialog() {
     const dialog = document.getElementById('booking-dialog');
     const backdrop = document.getElementById('booking-backdrop');

@@ -1,6 +1,6 @@
 <section id="about" class="relative py-32 bg-gradient-to-b from-[#002B5B] to-[#001a3d] overflow-hidden">
-    <div class="absolute top-20 right-10 w-72 h-72 bg-[#1DB954]/10 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute bottom-20 left-10 w-96 h-96 bg-[#1DB954]/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+    <div class="absolute top-20 right-10 w-72 h-72 bg-[#1DB954]/10 rounded-full blur-3xl animate-float-1"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-[#1DB954]/5 rounded-full blur-3xl animate-float-2" style="animation-delay: 2s"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -76,6 +76,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- Background glow behind image -->
+                <div class="absolute -z-10 inset-0 bg-gradient-to-br from-[#1DB954]/20 to-[#1DB954]/5 rounded-3xl blur-2xl animate-float-1"></div>
             </div>
         </div>
     </div>

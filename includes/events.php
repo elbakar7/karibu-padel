@@ -1,6 +1,6 @@
 <section id="events" class="relative py-32 bg-gradient-to-b from-[#001a3d] to-[#002B5B] overflow-hidden">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1DB954]/10 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1DB954]/6 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1DB954]/10 rounded-full blur-3xl animate-float-1"></div>
+    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1DB954]/6 rounded-full blur-3xl animate-float-2" style="animation-delay: 2s"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-20 reveal-on-scroll">
@@ -22,7 +22,8 @@
                     'date' => 'Every Last Saturday',
                     'image' => 'assets/originals/gallery/pexels-criticalimagery-32896996.jpg',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M19 11H5m14 0a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+                    // Trophy
+                    'icon_path' => 'M6 9H4.5a2.5 2.5 0 0 1 0-5H6 M18 9h1.5a2.5 2.5 0 0 0 0-5H18 M4 22h16 M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z M12 15v7'
                 ],
                 [
                     'title' => 'Social Mixers',
@@ -30,7 +31,8 @@
                     'date' => 'Every Friday Evening',
                     'image' => 'assets/originals/gallery/image00028.jpg',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'
+                    // Users
+                    'icon_path' => 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75'
                 ],
                 [
                     'title' => 'Pro Clinics',
@@ -38,7 +40,8 @@
                     'date' => 'Weekly Sessions',
                     'image' => 'assets/originals/gallery/image00097.jpg',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+                    // Calendar
+                    'icon_path' => 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z'
                 ],
                 [
                     'title' => 'VIP Nights',
@@ -46,7 +49,8 @@
                     'date' => 'Monthly Special',
                     'image' => 'assets/originals/gallery/image00126.jpg',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+                    // Sparkles
+                    'icon_path' => 'm12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z M5 3v4 M3 5h4'
                 ]
             ];
             

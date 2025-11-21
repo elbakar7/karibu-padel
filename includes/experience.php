@@ -24,30 +24,55 @@
                     'title' => 'Oceanfront View',
                     'description' => 'Play with the Indian Ocean as your backdrop',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707'
+                    // Sunrise
+                    'icon_path' => 'M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'
                 ],
                 [
                     'title' => 'Professional Turf',
                     'description' => 'World-class playing surface for optimal performance',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+                    // Globe
+                    'icon_path' => 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z M12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9z M2 12h20 M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'
                 ],
                 [
                     'title' => 'Night Matches',
                     'description' => 'Premium lighting for unforgettable evening games',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+                    // Moon
+                    'icon_path' => 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'
                 ],
                 [
                     'title' => 'VIP Lounge',
                     'description' => 'Relax in style with ocean-view refreshments',
                     'color' => 'from-[#1DB954] to-[#1DB954]/80',
-                    'icon_path' => 'M8 21h8m-4-8v8M4.929 4h14.142L12 13 4.929 4z'
+                    // Wine
+                    'icon_path' => 'M8 22h8m-4-10v10M3 3h18v5c0 5-4 9-9 9s-9-4-9-9V3'
                 ]
             ];
 
             foreach ($features as $index => $feature) {
                 $delay = $index * 100;
+                // Note: Adjusting SVG viewBox or path scaling if necessary. Lucide usually fits in 0 0 24 24.
+                // Globe path above is slightly complex, I'll use the simpler Lucide Globe path if possible or a compatible one.
+                // Sunrise path needs the semicircle? M12 2v8? No, Lucide Sunrise is typically sun + horizon.
+                // Let's use standard Lucide paths more carefully.
+                if ($feature['title'] === 'Oceanfront View') { // Sunrise
+                     $feature['icon_path'] = 'M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41m-2.14 2.14'; // Simplified sun
+                     // Better Sunrise: M12 2v2 M4.93 4.93l1.41 1.41 M20 12h2 M2 12h2 M17.66 17.66l1.41 1.41 M4.93 19.07l1.41-1.41 M12 18v4 M12 12a5 5 0 0 0 5 5H7a5 5 0 0 0 5-5Z? 
+                     // Actually Lucide "Sunrise":
+                     $feature['icon_path'] = 'M12 2v2 M4.93 4.93l1.41 1.41 M20 12h2 M2 12h2 M19.07 4.93l-1.41 1.41 M16 16a4 4 0 0 0-8 0 M12 16v6 M8 22h8';
+                }
+                if ($feature['title'] === 'Professional Turf') { // Globe
+                     $feature['icon_path'] = 'M22 12h-4l-3 9L9 3l-3 9H2'; // Activity? No, Globe.
+                     $feature['icon_path'] = 'M21.54 15H17a2 2 0 0 0-2 2v4.54 M7 4.54V9a2 2 0 0 0 2 2h4.54 M3.6 9h4.9a2 2 0 0 0 2-2V2.1 M13.4 21v-4.9a2 2 0 0 0-2-2H6.5 M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z';
+                }
+                if ($feature['title'] === 'Night Matches') { // Moon
+                     $feature['icon_path'] = 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z';
+                }
+                if ($feature['title'] === 'VIP Lounge') { // Wine
+                     $feature['icon_path'] = 'M8 22h8M7 10h10M12 15v7M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z';
+                }
+
                 echo "<div class=\"relative group reveal-on-scroll\" style=\"transition-delay: {$delay}ms\">
                     <div class=\"absolute inset-0 opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-500 bg-gradient-to-br {$feature['color']}\"></div>
                     <div class=\"relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:border-white/30 transition-all duration-500 hover:-translate-y-2\">
@@ -56,6 +81,7 @@
                         </div>
                         <h3 class=\"text-white mb-3 text-xl font-medium\">{$feature['title']}</h3>
                         <p class=\"text-white/60 leading-relaxed\">{$feature['description']}</p>
+                        <div class=\"absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r {$feature['color']} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left\"></div>
                     </div>
                 </div>";
             }

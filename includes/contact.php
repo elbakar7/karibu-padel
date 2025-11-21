@@ -5,8 +5,8 @@
     </div>
 
     <!-- Animated background elements -->
-    <div class="absolute top-20 right-20 w-96 h-96 bg-[#1DB954]/20 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
-    <div class="absolute bottom-20 left-20 w-96 h-96 bg-[#1DB954]/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow" style="animation-delay: 2s"></div>
+    <div class="absolute top-20 right-20 w-96 h-96 bg-[#1DB954]/20 rounded-full blur-3xl pointer-events-none animate-float-1"></div>
+    <div class="absolute bottom-20 left-20 w-96 h-96 bg-[#1DB954]/10 rounded-full blur-3xl pointer-events-none animate-float-2" style="animation-delay: 2s"></div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 pb-16 md:pb-24">
          <div class="text-center mb-12 md:mb-20 reveal-on-scroll">

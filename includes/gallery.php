@@ -1,6 +1,6 @@
 <section id="gallery" class="relative py-12 sm:py-20 md:py-32 pb-16 sm:pb-24 md:pb-40 bg-gradient-to-b from-[#002B5B] via-[#001a3d] to-[#002B5B] overflow-hidden">
-    <div class="absolute top-20 left-10 w-[600px] h-[600px] bg-[#00BFA6]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute bottom-20 right-10 w-[500px] h-[500px] bg-[#FFD479]/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+    <div class="absolute top-20 left-10 w-[600px] h-[600px] bg-[#00BFA6]/5 rounded-full blur-3xl animate-float-1"></div>
+    <div class="absolute bottom-20 right-10 w-[500px] h-[500px] bg-[#FFD479]/5 rounded-full blur-3xl animate-float-2" style="animation-delay: 2s"></div>
 
     <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-8 sm:mb-12 md:mb-20 reveal-on-scroll">
@@ -27,6 +27,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] gap-3 sm:gap-4 md:gap-5">
              <?php
              $galleryImages = glob('assets/originals/gallery/*.{jpg,jpeg,png,webp,JPG}', GLOB_BRACE);
+             sort($galleryImages);
              
              $patterns = [
                  'col-span-1 row-span-1 md:col-span-2 md:row-span-2',
