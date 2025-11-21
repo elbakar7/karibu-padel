@@ -1,0 +1,44 @@
+[
+  {
+    "name": "hero-carousel-slide1",
+    "aspectRatio": 0.666667,
+    "originalWidth": 4608,
+    "originalHeight": 3072,
+    "generatedWidths": [
+      640,
+      1024,
+      1440,
+      1920
+    ],
+    "fallback": "src/assets/generated/hero-carousel-slide1/hero-carousel-slide1-1920.jpg",
+    "placeholder": "src/assets/generated/hero-carousel-slide1/hero-carousel-slide1-placeholder.webp"
+  },
+  {
+    "name": "hero-carousel-slide2",
+    "aspectRatio": 0.561836,
+    "originalWidth": 5272,
+    "originalHeight": 2962,
+    "generatedWidths": [
+      640,
+      1024,
+      1440,
+      1920
+    ],
+    "fallback": "src/assets/generated/hero-carousel-slide2/hero-carousel-slide2-1920.jpg",
+    "placeholder": "src/assets/generated/hero-carousel-slide2/hero-carousel-slide2-placeholder.webp"
+  },
+  {
+    "name": "hero-carousel-slide3",
+    "aspectRatio": 0.666667,
+    "originalWidth": 4608,
+    "originalHeight": 3072,
+    "generatedWidths": [
+      640,
+      1024,
+      1440,
+      1920
+    ],
+    "fallback": "src/assets/generated/hero-carousel-slide3/hero-carousel-slide3-1920.jpg",
+    "placeholder": "src/assets/generated/hero-carousel-slide3/hero-carousel-slide3-placeholder.webp"
+  }
+]
